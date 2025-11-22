@@ -26,7 +26,7 @@ export default function HomeScreen({ route }) {
           style={styles.avatar}
         />
         <View style={styles.cardContent}>
-          <Text style={styles.cardTitle}>Segui il percorso di{'\n'}{character.name.split(' ')[0]}</Text>
+          <Text style={styles.cardTitle}>Segui il percorso di{'\n'}{character.name.split()[0]}</Text>
           <TouchableOpacity style={styles.startButton}>
             <Text style={styles.startButtonText}>Inizia</Text>
           </TouchableOpacity>

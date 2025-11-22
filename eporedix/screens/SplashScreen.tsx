@@ -80,8 +80,8 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   description: {
-    fontSize: 16,
-    lineHeight: 22,
+    fontSize: 20,
+    lineHeight: 24,
     color: '#d9d9d9',
     textAlign: 'center',
     paddingHorizontal: 12,

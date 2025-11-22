@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 export default function SignupScreen() {
@@ -16,6 +16,11 @@ export default function SignupScreen() {
       resizeMode="cover"
     >
       <View style={styles.overlay} />
+      <KeyboardAvoidingView
+              behavior={Platform.OS === "ios" ? "padding" : "height"}
+              style={{ flex: 1, justifyContent: 'center' }}
+              keyboardVerticalOffset={40}
+            >
       <View style={styles.content}>
         <Text style={styles.title}>Registrati</Text>
         <Text style={styles.subtitle}>Inserisci i tuoi dati e inizia la tua avventura!</Text>
@@ -55,7 +60,7 @@ export default function SignupScreen() {
           />
         </View>
 
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Main' as never)}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ChooseMode' as never)}>
           <Text style={styles.buttonText}>Registrati</Text>
         </TouchableOpacity>
 
@@ -66,6 +71,7 @@ export default function SignupScreen() {
           </TouchableOpacity>
         </View>
       </View>
+      </KeyboardAvoidingView>
     </ImageBackground>
   );
 }

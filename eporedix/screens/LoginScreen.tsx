@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-export default function SignupScreen() {
+export default function LoginScreen() {
   const navigation = useNavigation();
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
 
   return (
     <ImageBackground
@@ -16,41 +14,47 @@ export default function SignupScreen() {
       resizeMode="cover"
     >
       <View style={styles.overlay} />
-      <View style={styles.content}>
-        <Text style={styles.title}>Login</Text>
-        <Text style={styles.subtitle}>Inserisci i tuoi dati e inizia la tua avventura!</Text>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={{ flex: 1, justifyContent: 'center' }}
+        keyboardVerticalOffset={40}
+      >
+        <View style={styles.content}>
+          <Text style={styles.title}>Login</Text>
+          <Text style={styles.subtitle}>Inserisci i tuoi dati e inizia la tua avventura!</Text>
 
-        <View style={styles.form}>
-          <TextInput
-            value={email}
-            onChangeText={setEmail}
-            placeholder="Email"
-            placeholderTextColor="#d9d9d9"
-            style={styles.input}
-            keyboardType="email-address"
-            autoCapitalize="none"
-          />
-          <TextInput
-            value={password}
-            onChangeText={setPassword}
-            placeholder="Password"
-            placeholderTextColor="#d9d9d9"
-            style={styles.input}
-            secureTextEntry
-          />
-        </View>
+          <View style={styles.form}>
+            <TextInput
+              value={email}
+              onChangeText={setEmail}
+              placeholder="Email"
+              placeholderTextColor="#d9d9d9"
+              style={styles.input}
+              keyboardType="email-address"
+              autoCapitalize="none"
+            />
+            <TextInput
+              value={password}
+              onChangeText={setPassword}
+              placeholder="Password"
+              placeholderTextColor="#d9d9d9"
+              style={styles.input}
+              secureTextEntry
+            />
+          </View>
 
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Main' as never)}>
-          <Text style={styles.buttonText}>Accedi</Text>
-        </TouchableOpacity>
-
-        <View style={styles.footerRow}>
-          <Text style={styles.footerText}>Hai già un account? </Text>
-          <TouchableOpacity onPress={() => navigation.navigate('Signup' as never)}>
-            <Text style={styles.footerLink}>REGISTRATI</Text>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ChooseMode' as never)}>
+            <Text style={styles.buttonText}>Accedi</Text>
           </TouchableOpacity>
+
+          <View style={styles.footerRow}>
+            <Text style={styles.footerText}>Hai già un account? </Text>
+            <TouchableOpacity onPress={() => navigation.navigate('Signup' as never)}>
+              <Text style={styles.footerLink}>REGISTRATI</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </ImageBackground>
   );
 }

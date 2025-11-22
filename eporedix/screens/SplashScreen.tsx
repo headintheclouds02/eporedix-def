@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   },
   footer: {
     alignItems: 'center',
-    gap: 16,
+    gap: 30,
   },
   dots: {
     flexDirection: 'row',

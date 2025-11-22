@@ -5,7 +5,8 @@ import HomeScreen from './screens/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import TapBarCustom from './components/TapBarCustom';
 import ExploreScreen from './screens/ExploreScreen';
-import ChooseMode from './screens/ChooseMode'; // importa la schermata scelta
+import ChooseMode from './screens/ChooseMode';
+import ChooseCharacter from './screens/ChooseCharacter';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -29,6 +30,7 @@ export default function App() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {/* Prima schermata: scelta modalità */}
         <Stack.Screen name="ChooseMode" component={ChooseMode} />
+        <Stack.Screen name="ChooseCharacter" component={ChooseCharacter} /> 
         {/* Flusso principale con la tab bar */}
         <Stack.Screen name="Main" component={MainTabs} />
       </Stack.Navigator>

@@ -7,6 +7,9 @@ import TapBarCustom from './components/TapBarCustom';
 import ExploreScreen from './screens/ExploreScreen';
 import ChooseMode from './screens/ChooseMode';
 import ChooseCharacter from './screens/ChooseCharacter';
+import SplashScreen from './screens/SplashScreen';
+import LoginScreen from './screens/LoginScreen';
+import SignupScreen from './screens/SignUpScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -27,8 +30,11 @@ function MainTabs() {
 export default function App() {
   return (
     <NavigationContainer>
+      
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {/* Prima schermata: scelta modalità */}
+        <Stack.Screen name="Splash" component={SplashScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Signup" component={SignupScreen} />
         <Stack.Screen name="ChooseMode" component={ChooseMode} />
         <Stack.Screen name="ChooseCharacter" component={ChooseCharacter} /> 
         {/* Flusso principale con la tab bar */}

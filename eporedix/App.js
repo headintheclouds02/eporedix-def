@@ -29,7 +29,11 @@ function MainTabs({ route }) {
         initialParams={character ? { character } : undefined}
       />
       <Tab.Screen name="Explore" component={ExploreScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen
+      name="Profile"
+      component={ProfileScreen}
+      initialParams={character ? { character } : undefined}
+      />
     </Tab.Navigator>
   );
 }
@@ -37,13 +41,13 @@ function MainTabs({ route }) {
 export default function App() {
   return (
     <NavigationContainer>
-      
+
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Splash" component={SplashScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Signup" component={SignupScreen} />
         <Stack.Screen name="ChooseMode" component={ChooseMode} />
-        <Stack.Screen name="ChooseCharacter" component={ChooseCharacter} /> 
+        <Stack.Screen name="ChooseCharacter" component={ChooseCharacter} />
         {/* Flusso principale con la tab bar */}
         <Stack.Screen name="Main" component={MainTabs} />
       </Stack.Navigator>

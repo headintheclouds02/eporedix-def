@@ -17,6 +17,13 @@ export default function ProfileScreen({ route }) {
     const progress = 0.7;
     const AVATAR = route?.params?.character?.image || require("../assets/images_profile/img_1.png");
 
+    const onLogout = async () => {
+        try {
+            await AsyncStorage.removeItem('isLoggedIn');
+            navigation.navigate('Login');
+        } catch {}
+    };
+
 
   useEffect(() => {
     const loadUser = async () => {
@@ -89,6 +96,9 @@ export default function ProfileScreen({ route }) {
                 <Text style={styles.modeText}>Cambia modalità</Text>
                 
                 <Text style={styles.chevronLight}>{">"}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.logoutButton} activeOpacity={0.85} onPress={onLogout}>
+                <Text style={styles.logoutText}>Disconnetti</Text>
             </TouchableOpacity>
         </SafeAreaView>
     );
@@ -246,6 +256,15 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
     },
+    logoutButton: {
+        backgroundColor: "#c54949",
+        borderRadius: 16,
+        paddingVertical: 14,
+        paddingHorizontal: 14,
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 12,
+    },
     modeIcon: {
         width: 25,
         height: 25,
@@ -257,6 +276,11 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: "600",
         flex: 1,
+    },
+    logoutText: {
+        color: "#f7f0eb",
+        fontSize: 15,
+        fontWeight: "700",
     },
     settingIcon: {
         width: 25,

@@ -1,6 +1,12 @@
 import React from 'react';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
+
+const icons: Record<string, any> = {
+  Home: require('../assets/icons/Home.png'),
+  Explore: require('../assets/icons/Explore.png'),
+  Profile: require('../assets/icons/Profile.png'),
+};
 
 export default function TabBarCustom({ state, navigation }: BottomTabBarProps) {
   return (
@@ -21,7 +27,14 @@ export default function TabBarCustom({ state, navigation }: BottomTabBarProps) {
             activeOpacity={0.7}
             style={[styles.tab, isFocused && styles.tabFocused]}
           >
-            <View style={styles.icon} />
+            <Image
+              source={icons[route.name]}
+              style={[
+                styles.icon,
+                isFocused && styles.iconFocused,
+              ]}
+              resizeMode="contain"
+            />
           </TouchableOpacity>
         );
       })}
@@ -56,5 +69,8 @@ const styles = StyleSheet.create({
     height: 24,
     backgroundColor: '#8B4545',
     borderRadius: 12,
+  },
+  iconFocused: {
+    opacity: 1,
   },
 });

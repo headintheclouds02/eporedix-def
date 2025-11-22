@@ -27,7 +27,7 @@ export default function ChooseCharacter({ navigation }) {
 
     const handleNext = () => {
         if (selected !== null) {
-            navigation.replace("Main");
+            navigation.replace("Main", { character: characters[selected] });
         }
     };
 

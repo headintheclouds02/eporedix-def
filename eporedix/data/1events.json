@@ -1,0 +1,74 @@
+[
+  {
+    "id": 60,
+    "date": "2025-06-01",
+    "time": "09:30-10:30",
+    "title": "Rassegna stampa",
+    "location": "Cortile del Museo Garda",
+    "description": "Con Nicola Ghittoni."
+  },
+  {
+    "id": 61,
+    "date": "2025-06-01",
+    "time": "10:00-11:00",
+    "title": "Colazione con i libri",
+    "location": "Galleria del Libro",
+    "description": "Incontro con autori e autrici, per tutti e tutte."
+  },
+  {
+    "id": 62,
+    "date": "2025-06-01",
+    "time": "10:30-11:30",
+    "title": "Letture animate per bambini",
+    "location": "Biblioteca",
+    "description": "Con animatori esperti, per bambini dai 3 ai 7 anni."
+  },
+  {
+    "id": 63,
+    "date": "2025-06-01",
+    "time": "11:00-12:00",
+    "title": "Scrittura creativa: dal sogno al racconto",
+    "location": "Laboratorio Museo Tecnologic@mente",
+    "description": "Laboratorio per ragazzi dai 10 ai 14 anni."
+  },
+  {
+    "id": 64,
+    "date": "2025-06-01",
+    "time": "12:00-13:00",
+    "title": "Presentazione libro: Viaggio nel tempo",
+    "location": "Teatro Giacosa",
+    "description": "Con l’autore Marco Rossi."
+  },
+  {
+    "id": 65,
+    "date": "2025-06-01",
+    "time": "14:00-15:00",
+    "title": "Storie di mare e avventure",
+    "location": "Piazzetta Santa Croce",
+    "description": "Racconti e letture per tutta la famiglia."
+  },
+  {
+    "id": 66,
+    "date": "2025-06-01",
+    "time": "15:00-16:00",
+    "title": "Laboratorio artistico: disegni e colori",
+    "location": "ZAC!",
+    "description": "Per bambini dai 5 ai 10 anni."
+  },
+  {
+    "id": 67,
+    "date": "2025-06-01",
+    "time": "16:00-17:00",
+    "title": "Incontro con l’autrice Elisa Bianchi",
+    "location": "Libreria Azami",
+    "description": "Dialogo e firma copie."
+  },
+  {
+    "id": 68,
+    "date": "2025-06-01",
+    "time": "17:00-18:00",
+    "title": "Concerto finale di chiusura",
+    "location": "Parco Lago di Città",
+    "description": "Performance musicale per concludere il festival."
+  }
+]

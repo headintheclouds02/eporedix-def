@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
+    fontFamily: 'Poppins_700Bold',
     fontSize: 28,
     fontWeight: '700',
     color: '#ffffff',
@@ -80,15 +81,15 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   description: {
-    fontSize: 16,
-    lineHeight: 22,
+    fontSize: 20,
+    lineHeight: 24,
     color: '#d9d9d9',
     textAlign: 'center',
     paddingHorizontal: 12,
   },
   footer: {
     alignItems: 'center',
-    gap: 16,
+    gap: 30,
   },
   dots: {
     flexDirection: 'row',

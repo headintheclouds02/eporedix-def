@@ -1,0 +1,306 @@
+[
+  {
+    "id": 22,
+    "date": "2025-05-31",
+    "time": "08:30-09:30",
+    "title": "Rassegna stampa",
+    "location": "Cortile del Museo Garda",
+    "description": "Con Nicola Ghittoni."
+  },
+  {
+    "id": 23,
+    "date": "2025-05-31",
+    "time": "09:30-10:30",
+    "title": "Un rifugio dentro di me – Laboratorio esperienziale",
+    "location": "Biblioteca",
+    "description": "A cura di Studio Sigrè e Associazione ControSpazio, dai 3 ai 6 anni."
+  },
+  {
+    "id": 24,
+    "date": "2025-05-31",
+    "time": "09:30-11:00",
+    "title": "Leggere con i piedi – Laboratorio di scrittura creativa",
+    "location": "Biblioteca",
+    "description": "Con Benedetta Marinelli e Giulio Frangioni di STC edizioni, dai 10 anni."
+  },
+  {
+    "id": 25,
+    "date": "2025-05-31",
+    "time": "10:00-11:00",
+    "title": "Ascolta: io ti domando – Porsi all’altezza dei bambini",
+    "location": "Galleria del Libro",
+    "description": "Per grandi, con Giusi Quarenghi."
+  },
+  {
+    "id": 26,
+    "date": "2025-05-31",
+    "time": "11:00-12:00",
+    "title": "Aspettando... Antonino! – Reading interattivo",
+    "location": "Piazzetta Santa Croce",
+    "description": "A cura di Manuela Celestino e Umberto Poli, dai 5 anni."
+  },
+  {
+    "id": 27,
+    "date": "2025-05-31",
+    "time": "11:00-12:00",
+    "title": "Letture fresche di giornata",
+    "location": "Parco Lago di Città",
+    "description": "Si leggono i libri del festival con Elena Mez, per tutti e tutte."
+  },
+  {
+    "id": 28,
+    "date": "2025-05-31",
+    "time": "11:30-12:30",
+    "title": "Le nonne delle parole – Invito all’etimologia",
+    "location": "ZAC!",
+    "description": "Con Giorgio Moretti e Bruno Tognolini, per famiglie dagli 8 anni."
+  },
+  {
+    "id": 29,
+    "date": "2025-05-31",
+    "time": "12:00",
+    "title": "Inaugurazione della mostra: Letture a matita",
+    "location": "Kölla e Mama b",
+    "description": "Mostra di Antonio Pronostico, a cura di Caracol Art Gallery."
+  },
+  {
+    "id": 30,
+    "date": "2025-05-31",
+    "time": "12:00",
+    "title": "Inaugurazione della mostra: Immagini d’acqua",
+    "location": "Galleria del Libro",
+    "description": "Mostra di Piero Macola, a cura di Caracol Art Gallery; a seguire conversazione tra Piero Macola e Antonio Pronostico."
+  },
+  {
+    "id": 31,
+    "date": "2025-05-31",
+    "time": "12:30-14:00",
+    "title": "Pic nic sul prato e giochi dal mondo",
+    "location": "Parco Lago di Città",
+    "description": "Con progetto SAI di Ivrea e Cooperativa Mary Poppins. Necessario pranzo al sacco, per tutti e tutte."
+  },
+  {
+    "id": 32,
+    "date": "2025-05-31",
+    "time": "14:00-15:00",
+    "title": "Come saltano le cavallette",
+    "location": "Edicola di piazza Santa Marta",
+    "description": "La redazione presenta Grilla, l’edizione 2024 delle Cavallette, in dialogo con Giacomo Bona, Arianna Gastaldo e Lucia Rossetti, per tutti e tutte."
+  },
+  {
+    "id": 33,
+    "date": "2025-05-31",
+    "time": "14:30-15:30",
+    "title": "Canti dell’inizio. Canti della fine",
+    "location": "Teatro Giacosa",
+    "description": "Con Bruno Tognolini, per tutti e tutte dai 7 anni. Biglietto 7€."
+  },
+  {
+    "id": 34,
+    "date": "2025-05-31",
+    "time": "15:00-15:50",
+    "title": "Ma io quasi quasi",
+    "location": "Galleria del Libro",
+    "description": "Michele Bitossi in dialogo con Eleonora Daniel."
+  },
+  {
+    "id": 35,
+    "date": "2025-05-31",
+    "time": "15:00-15:50",
+    "title": "Le emissioni segrete – L’impatto ambientale dell’universo digitale",
+    "location": "Laboratorio – Museo Tecnologic@mente",
+    "description": "Giovanna Sissa in dialogo con Massimo Bologna, coordina Giuseppe Rao."
+  },
+  {
+    "id": 36,
+    "date": "2025-05-31",
+    "time": "15:30-16:30",
+    "title": "A volte arriva il buio – Laboratorio alla scoperta delle paure",
+    "location": "Biblioteca",
+    "description": "Con Francesco Morgando, dai 4 anni."
+  },
+  {
+    "id": 37,
+    "date": "2025-05-31",
+    "time": "16:00-16:50",
+    "title": "Maschi che piangono poco",
+    "location": "San Gaudenzio",
+    "description": "Alberto Penna in dialogo con Paola Saluzzi, introduce Barbara Bessolo, in collaborazione con Associazione Violetta – La forza delle donne."
+  },
+  {
+    "id": 38,
+    "date": "2025-05-31",
+    "time": "16:00-16:50",
+    "title": "Stephen Chi?",
+    "location": "Caffè Gioberti",
+    "description": "Jacopo Cirillo e Giulio D’Antona cercano di convincere Matteo B. Bianchi a leggere Stephen King."
+  },
+  {
+    "id": 39,
+    "date": "2025-05-31",
+    "time": "16:00-16:50",
+    "title": "La pratica della leadership adattiva",
+    "location": "Olivetti Leadership Institute",
+    "description": "Stefano Zordan in dialogo con Beppe Pezzetto."
+  },
+  {
+    "id": 40,
+    "date": "2025-05-31",
+    "time": "16:00-17:00",
+    "title": "La casa dei Topi",
+    "location": "Galleria del Libro",
+    "description": "I fondatori di Topipittori Paolo Canton e Giovanna Zoboli in dialogo con Giusi Quarenghi, per grandi."
+  },
+  {
+    "id": 41,
+    "date": "2025-05-31",
+    "time": "16:30-17:30",
+    "title": "Copiare dai primi della classe – Imparare le sorprendenti strategie degli animali",
+    "location": "Centro Diurno Centonove e dintorni",
+    "description": "Con Gianumberto Accinelli, dagli 8 anni."
+  },
+  {
+    "id": 42,
+    "date": "2025-05-31",
+    "time": "17:00-18:00",
+    "title": "Supercalibook – Si leggono i libri del festival",
+    "location": "Piazzetta Santa Croce",
+    "description": "Con Francesca Leoni, per tutti e tutte."
+  },
+  {
+    "id": 43,
+    "date": "2025-05-31",
+    "time": "17:00-17:50",
+    "title": "Smart working: la seconda stagione",
+    "location": "Olivetti Leadership Institute",
+    "description": "Luciana De Laurentis in dialogo con Stefano Zordan."
+  },
+  {
+    "id": 44,
+    "date": "2025-05-31",
+    "time": "17:00-17:50",
+    "title": "Tre isole. Storie di mare, esilio e dissidenza",
+    "location": "Cortile del Museo Garda",
+    "description": "William Atkins in dialogo con Laura Pezzino."
+  },
+  {
+    "id": 45,
+    "date": "2025-05-31",
+    "time": "17:00-17:50",
+    "title": "Esordi: Antonio Galetta e Ilaria Grando",
+    "location": "San Gaudenzio",
+    "description": "In dialogo con Federica Antonacci, in collaborazione con Scuola Holden, nell’ambito del progetto SIAE – Per chi crea."
+  },
+  {
+    "id": 46,
+    "date": "2025-05-31",
+    "time": "17:00-17:50",
+    "title": "La rivoluzione alla radio – Microfoni femministi dagli anni Settanta",
+    "location": "Santa Marta",
+    "description": "Vanessa Roghi in dialogo con Andrea Borgnino, in collaborazione con RaiPlay Sound."
+  },
+  {
+    "id": 47,
+    "date": "2025-05-31",
+    "time": "17:00-17:50",
+    "title": "La rivoluzione delle vendite – Ugo Galassi e il sistema commerciale Olivetti",
+    "location": "Archivio storico Olivetti Villa Casana",
+    "description": "Domenico Osella in dialogo con Bruno Lamborghini."
+  },
+  {
+    "id": 48,
+    "date": "2025-05-31",
+    "time": "17:00-17:50",
+    "title": "Hibana, fiori di fuoco – Reading",
+    "location": "Open Art House",
+    "description": "Reading di Mara Risitano."
+  },
+  {
+    "id": 49,
+    "date": "2025-05-31",
+    "time": "17:30-18:20",
+    "title": "L’amore mio non muore",
+    "location": "Teatro Giacosa",
+    "description": "Roberto Saviano in dialogo con Gianmario Pilo. Biglietto 10€."
+  },
+  {
+    "id": 50,
+    "date": "2025-05-31",
+    "time": "17:30-18:30",
+    "title": "La mia famiglia e altri bestiari",
+    "location": "Galleria del Libro",
+    "description": "Bestiari a confronto con Lilith Moscon e Gabriele Pino, per tutti e tutte."
+  },
+  {
+    "id": 51,
+    "date": "2025-05-31",
+    "time": "17:30-18:30",
+    "title": "Drin Drin e lo spettacolo della felicità",
+    "location": "ZAC!",
+    "description": "Rappresentazione teatrale del quarto libro ideato dai ragazzi con disabilità del CAD Montenero, Pollicino sc, Consorzio In.Re.Te, con Elena Mirandola, Stefania Porrino e la compagnia Gruppo arte e cultura, per tutti e tutte."
+  },
+  {
+    "id": 52,
+    "date": "2025-05-31",
+    "time": "18:00-18:50",
+    "title": "Vite nell’oro e nel blu",
+    "location": "Libreria Azami",
+    "description": "Andrea Pomella in dialogo con Emiliano Sbaraglia."
+  },
+  {
+    "id": 53,
+    "date": "2025-05-31",
+    "time": "18:00-18:50",
+    "title": "Santa Maradona",
+    "location": "Spritz",
+    "description": "Edizione speciale della sceneggiatura a sostegno della Fondazione Piemontese per la ricerca sul cancro di Candiolo, con Marco Ponti e Luca Bianchini; a seguire after party."
+  },
+  {
+    "id": 54,
+    "date": "2025-05-31",
+    "time": "18:00-18:50",
+    "title": "La Cina è un’aragosta",
+    "location": "Cortile del Museo Garda",
+    "description": "Giada Messetti in dialogo con Davide Gamba."
+  },
+  {
+    "id": 55,
+    "date": "2025-05-31",
+    "time": "18:00-18:50",
+    "title": "Mare aperto",
+    "location": "Santa Marta",
+    "description": "Luca Misculin in dialogo con Francesco Guglieri."
+  },
+  {
+    "id": 56,
+    "date": "2025-05-31",
+    "time": "19:00-19:50",
+    "title": "Giocano tutte",
+    "location": "Santa Marta",
+    "description": "Donne, sport, disabilità: racconti che cambiano le regole, con Caterina Caparello, Annalisa Cerrone ed Elena Miglietti, a cura di Morenic Sport Commission."
+  },
+  {
+    "id": 57,
+    "date": "2025-05-31",
+    "time": "19:00-19:50",
+    "title": "Qui si fa l’Italia",
+    "location": "Cortile del Museo Garda",
+    "description": "Con Lorenzo Baravalle e Lorenzo Pregliasco; intervento del Presidente Paolo Conta in occasione dell’80° anniversario di Confindustria Canavese, modera Ambra Michela."
+  },
+  {
+    "id": 58,
+    "date": "2025-05-31",
+    "time": "20:00-20:50",
+    "title": "Nakano – L’Impero del keirin",
+    "location": "Santa Marta",
+    "description": "Spettacolo di Marco Ballestracci con Nicola Brugnolo e Edoardo Egano."
+  },
+  {
+    "id": 59,
+    "date": "2025-05-31",
+    "time": "21:30-22:20",
+    "title": "L’amore mio non muore",
+    "location": "Teatro Giacosa",
+    "description": "Roberto Saviano in dialogo con Gianmario Pilo. Biglietto 10€."
+  }
+]

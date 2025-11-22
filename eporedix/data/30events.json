@@ -1,0 +1,171 @@
+[
+  {
+    "id": 1,
+    "date": "2025-05-30",
+    "time": "16:00-16:30",
+    "title": "Inaugurazione della mostra: TÈLOS – L’ignoto che ci abita",
+    "location": "Officine ICO",
+    "description": "Mostra di Giulia Osella."
+  },
+  {
+    "id": 2,
+    "date": "2025-05-30",
+    "time": "16:30",
+    "title": "Inaugurazione della mostra: Sintomalìa, tracce di scrittura poetica del corpo",
+    "location": "Open Art House",
+    "description": "Mostra di Silvia Papa."
+  },
+  {
+    "id": 3,
+    "date": "2025-05-30",
+    "time": "17:00",
+    "title": "Inaugurazione della mostra: Attirare l’attenzione",
+    "location": "Spritz",
+    "description": "Mostra di Stefano Fiorina."
+  },
+  {
+    "id": 4,
+    "date": "2025-05-30",
+    "time": "17:00-18:00",
+    "title": "Il limite del mondo – Sovvertire una distopia climatica",
+    "location": "ZAC!",
+    "description": "Incontro con Barbara Borlini e Francesco Memo. Per tutti e tutte dai 12 anni."
+  },
+  {
+    "id": 5,
+    "date": "2025-05-30",
+    "time": "17:00-19:00",
+    "title": "Scrivere testi in simboli accessibili",
+    "location": "Centro Sillaba",
+    "description": "A cura di Maria Caterina Minardi, Homeless Book e Centro Sillaba. Per educatori, educatrici e insegnanti."
+  },
+  {
+    "id": 6,
+    "date": "2025-05-30",
+    "time": "17:30",
+    "title": "Inaugurazione della mostra: Tavole ottometriche poetiche",
+    "location": "Santa Marta e Kölla",
+    "description": "Mostra di Alessandro d’Aquila, a cura della Galleria Ferrero."
+  },
+  {
+    "id": 7,
+    "date": "2025-05-30",
+    "time": "18:00",
+    "title": "Inaugurazione della Mostra brutt*",
+    "location": "Graphic Fighters",
+    "description": "Auroro Borealo feat. Warde."
+  },
+  {
+    "id": 8,
+    "date": "2025-05-30",
+    "time": "18:00",
+    "title": "Autori per Edizioni Pedrini",
+    "location": "Libreria Garda",
+    "description": "Incontro con Debora Bocchiardo, Davide Giglio Tos, Dario Omenetto e Giuliana Reano."
+  },
+  {
+    "id": 9,
+    "date": "2025-05-30",
+    "time": "18:00",
+    "title": "La liberazione del Canavese",
+    "location": "Libreria Garda",
+    "description": "Letture per l’80° anniversario della Liberazione di Ivrea con Mario Beiletti."
+  },
+  {
+    "id": 10,
+    "date": "2025-05-30",
+    "time": "18:30",
+    "title": "Inaugurazione della XIII edizione della Grande invasione",
+    "location": "Cortile del Museo Garda",
+    "description": "Cerimonia inaugurale del festival."
+  },
+  {
+    "id": 11,
+    "date": "2025-05-30",
+    "time": "19:00",
+    "title": "Cosa vuoi fare da grande? Voglio morire",
+    "location": "Cortile del Museo Garda",
+    "description": "Orrore e comico nella letteratura di Fleur Jaeggy con Chiara Valerio."
+  },
+  {
+    "id": 12,
+    "date": "2025-05-30",
+    "time": "20:00",
+    "title": "Simenon racconta Simenon",
+    "location": "Cortile del Museo Garda",
+    "description": "Dialogo con John Simenon, a cura di Filippo Maria Battaglia."
+  },
+
+  {
+    "id": 13,
+    "date": "2025-05-30",
+    "time": "21:00-21:50",
+    "title": "Turchese – Numero 9 della rivista vagabonda",
+    "location": "Libreria Didattica Più",
+    "description": "Con Benedetta Marinelli e Giulio Frangioni di STC edizioni. Per grandi."
+  },
+  {
+    "id": 14,
+    "date": "2025-05-30",
+    "time": "21:00-21:50",
+    "title": "Il detective sonnambulo",
+    "location": "Galleria del Libro",
+    "description": "Vanni Santoni in dialogo con le libraie della Galleria del Libro."
+  },
+  {
+    "id": 15,
+    "date": "2025-05-30",
+    "time": "21:00-21:50",
+    "title": "Il male che non c’è",
+    "location": "Libreria Garda",
+    "description": "Giulia Caminito in dialogo con Federica Antonacci."
+  },
+  {
+    "id": 16,
+    "date": "2025-05-30",
+    "time": "21:00-21:50",
+    "title": "C’è urgenza di azzurro",
+    "location": "Libreria antiquaria Mazzola",
+    "description": "Reading poetico di Vasco Mirandola nella mostra di Elena Mirandola."
+  },
+  {
+    "id": 17,
+    "date": "2025-05-30",
+    "time": "21:00-21:50",
+    "title": "Stelle cadenti",
+    "location": "Libreria Cossavella",
+    "description": "Laura Marzi in dialogo con Francesco Morgando."
+  },
+  {
+    "id": 18,
+    "date": "2025-05-30",
+    "time": "22:00-22:50",
+    "title": "Dischi volanti",
+    "location": "Libreria Azami",
+    "description": "Daniele Cassandro in dialogo con Umberto Poli, in collaborazione con Discoccasione."
+  },
+  {
+    "id": 19,
+    "date": "2025-05-30",
+    "time": "22:00-22:50",
+    "title": "Il palio delle rane",
+    "location": "Libreria Didattica Più",
+    "description": "Reading di Alessio Torino con accompagnamento musicale di Loris Deval. Introduce Marco Cassini."
+  },
+  {
+    "id": 20,
+    "date": "2025-05-30",
+    "time": "22:00-22:50",
+    "title": "La donna della mansarda",
+    "location": "Libreria Mondadori",
+    "description": "Davide Longo in dialogo con Davide Gamba."
+  },
+  {
+    "id": 21,
+    "date": "2025-05-30",
+    "time": "23:00",
+    "title": "B.B. Show",
+    "location": "Cortile del Museo Garda",
+    "description": "Matteo B. Bianchi intervista Jake La Furia."
+  }
+]

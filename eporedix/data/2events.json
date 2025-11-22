@@ -1,0 +1,162 @@
+[
+  {
+    "id": 69,
+    "date": "2025-06-02",
+    "time": "09:30-11:30",
+    "title": "Gustiamoci le storie!",
+    "location": "Villa Girelli",
+    "description": "Laboratorio di lettura ad alta voce a cura di Jessica Passerini di Alce Rosso, per genitori, educatori e insegnanti."
+  },
+  {
+    "id": 70,
+    "date": "2025-06-02",
+    "time": "09:30-11:30",
+    "title": "Oh! Quali emozioni troverò in fondo al vaso?",
+    "location": "Villa Girelli",
+    "description": "Canzoni e giochi a cura della cooperativa Alce Rosso, dai 3 ai 6 anni."
+  },
+  {
+    "id": 71,
+    "date": "2025-06-02",
+    "time": "10:30-11:30",
+    "title": "Il piccolo seme",
+    "location": "Centro famiglie F.I.L.O.",
+    "description": "Letture e giardinaggio con il Centro famiglie per genitori con bimbi e bimbe da 0 a 12 mesi. Prenotazioni per messaggio al 331.1357302."
+  },
+  {
+    "id": 72,
+    "date": "2025-06-02",
+    "time": "10:30-11:30",
+    "title": "Il piccolo seme",
+    "location": "Centro famiglie F.I.L.O.",
+    "description": "Letture e giardinaggio con il Centro famiglie per genitori con bimbi e bimbe da 12 a 36 mesi. Prenotazioni per messaggio al 331.1357302."
+  },
+  {
+    "id": 73,
+    "date": "2025-06-02",
+    "time": "10:30-12:00",
+    "title": "La vita segreta dei funghi",
+    "location": "Museo Tecnologic@mente",
+    "description": "Laboratorio con Associazione Vivere i parchi, dagli 11 anni."
+  },
+  {
+    "id": 74,
+    "date": "2025-06-02",
+    "time": "12:00-13:00",
+    "title": "Cosa leggo quest’estate?",
+    "location": "Libreria Didattica Più",
+    "description": "Suggerimenti di lettura per le vacanze a cura di Martina Russo di Andersen, per grandi."
+  },
+  {
+    "id": 75,
+    "date": "2025-06-02",
+    "time": "14:00-16:00",
+    "title": "In fondo al vaso",
+    "location": "Museo Garda",
+    "description": "Laboratorio con Katia Gianotti, dai 6 anni. Prenotazioni al numero 0125.410512 oppure via mail musei@comune.ivrea.to.it."
+  },
+  {
+    "id": 76,
+    "date": "2025-06-02",
+    "time": "14:30-15:30",
+    "title": "Quando guardiamo i figli… li vediamo davvero?",
+    "location": "Spazi-O",
+    "description": "Capirsi con la letteratura insieme a Studio Sigrè e Associazione ControSpazio, per genitori, educatori e insegnanti."
+  },
+  {
+    "id": 77,
+    "date": "2025-06-02",
+    "time": "15:00-16:30",
+    "title": "New Generation: nuove voci dell’Europa",
+    "location": "Galleria del Libro",
+    "description": "Con Pete Wu (Olanda), Maria Karpińska (Polonia), Kike Cherta (Spagna) e traduttrici. Modera Martino Gozzi (Scuola Holden)."
+  },
+  {
+    "id": 78,
+    "date": "2025-06-02",
+    "time": "16:00-16:50",
+    "title": "Era sempre festa. Cesare Pavese in podcast",
+    "location": "San Gaudenzio",
+    "description": "Con Simone Pieranni e Pierluigi Vaccaneo in collaborazione con il Pavese Festival."
+  },
+  {
+    "id": 79,
+    "date": "2025-06-02",
+    "time": "16:00-16:50",
+    "title": "Stephen Chi?",
+    "location": "Vino e Dintorni",
+    "description": "Jacopo Cirillo e Giulio D’Antona cercano di convincere Martina Testa a leggere Stephen King."
+  },
+  {
+    "id": 80,
+    "date": "2025-06-02",
+    "time": "16:15-17:15",
+    "title": "Di mare, di terra e di altri incantesimi",
+    "location": "Teatro Giacosa",
+    "description": "Immersione in parole e suoni con un pizzico di magia, con Manuela Celestino e Umberto Poli, per famiglie."
+  },
+  {
+    "id": 81,
+    "date": "2025-06-02",
+    "time": "17:00-17:50",
+    "title": "Il colpo segreto",
+    "location": "Cortile del Museo Garda",
+    "description": "Jessica Anthony in dialogo con Daniele Cassandro."
+  },
+  {
+    "id": 82,
+    "date": "2025-06-02",
+    "time": "17:00-17:50",
+    "title": "Esordi: Beatrice Sciarrillo e Edoardo Vitale",
+    "location": "San Gaudenzio",
+    "description": "In dialogo con Martino Gozzi, in collaborazione con Scuola Holden."
+  },
+  {
+    "id": 83,
+    "date": "2025-06-02",
+    "time": "17:00-17:50",
+    "title": "Cose nostre. Storie di donne e di mafia",
+    "location": "Santa Marta",
+    "description": "Emilia Brandi in dialogo con Andrea Borgnino, in collaborazione con RaiPlay Sound."
+  },
+  {
+    "id": 84,
+    "date": "2025-06-02",
+    "time": "17:00-17:50",
+    "title": "Scrittura improvvisata per contrabbasso solo",
+    "location": "Open Art House",
+    "description": "Con Stefano Risso."
+  },
+  {
+    "id": 85,
+    "date": "2025-06-02",
+    "time": "18:00-18:50",
+    "title": "Un amore di contrabbando",
+    "location": "Libreria Azami",
+    "description": "Nicola Muscas in dialogo con Darwin Pastorin."
+  },
+  {
+    "id": 86,
+    "date": "2025-06-02",
+    "time": "18:00-18:50",
+    "title": "Bella e perduta",
+    "location": "Cortile del Museo Garda",
+    "description": "Paolo Rumiz in dialogo con Davide Gamba."
+  },
+  {
+    "id": 87,
+    "date": "2025-06-02",
+    "time": "18:00-18:50",
+    "title": "Qui solo per poco",
+    "location": "Santa Marta",
+    "description": "María Ospina Pizano in dialogo con Jacopo Cirillo."
+  },
+  {
+    "id": 88,
+    "date": "2025-06-02",
+    "time": "19:00-19:50",
+    "title": "Son qui: m’ammazzi",
+    "location": "Cortile del Museo Garda",
+    "description": "Reading di Francesco Piccolo."
+  }
+]

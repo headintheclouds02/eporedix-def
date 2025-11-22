@@ -1,5 +1,6 @@
-﻿import React, { useState } from "react";
+﻿import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Image, Switch, TouchableOpacity } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const AVATAR = require("../assets/images_profile/img_1.png");
@@ -9,7 +10,23 @@ const ICON_CHANGE_MODE = require("../assets/icons/change_mod.png");
 
 export default function ProfileScreen() {
   const [darkMode, setDarkMode] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
   const progress = 0.7;
+
+  useEffect(() => {
+    const loadUser = async () => {
+      try {
+        const raw = await AsyncStorage.getItem('user');
+        if (raw) {
+          const u = JSON.parse(raw);
+          setUserName(u.name || "");
+          setUserEmail(u.email || "");
+        }
+      } catch {}
+    };
+    loadUser();
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -22,8 +39,8 @@ export default function ProfileScreen() {
             <Text style={styles.badgeText}>+</Text>
           </TouchableOpacity>
         </View>
-        <Text style={styles.name}>Mario Rossi</Text>
-        <Text style={styles.email}>mario.rossi@gmail.com</Text>
+        <Text style={styles.name}>{userName || "Mario Rossi"}</Text>
+        <Text style={styles.email}>{userEmail || "mario.rossi@gmail.com"}</Text>
       </View>
 
       <View style={styles.section}>

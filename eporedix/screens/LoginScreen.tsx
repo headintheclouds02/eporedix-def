@@ -1,13 +1,31 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, TextInput } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 
 export default function SignupScreen() {
   const navigation = useNavigation();
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const onLogin = async () => {
+    try {
+      const raw = await AsyncStorage.getItem('user');
+
+      if (!raw) return;
+      const saved = JSON.parse(raw);
+
+      // Normalizza email dell’input e quella salvata
+      const inputEmail = email.trim().toLowerCase();
+      const savedEmail = (saved.email || '').trim().toLowerCase();
+
+
+      if (savedEmail === inputEmail && saved.password === password) {
+        await AsyncStorage.setItem('isLoggedIn', 'true');
+        navigation.navigate('Main' as never);
+      }
+    } catch {}
+  };
 
   return (
     <ImageBackground
@@ -23,7 +41,8 @@ export default function SignupScreen() {
         <View style={styles.form}>
           <TextInput
             value={email}
-            onChangeText={setEmail}
+            // ogni volta che scrivi, salvo l’email in minuscolo
+            onChangeText={(text) => setEmail(text.toLowerCase())}
             placeholder="Email"
             placeholderTextColor="#d9d9d9"
             style={styles.input}
@@ -40,7 +59,7 @@ export default function SignupScreen() {
           />
         </View>
 
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Main' as never)}>
+        <TouchableOpacity style={styles.button} onPress={onLogin}>
           <Text style={styles.buttonText}>Accedi</Text>
         </TouchableOpacity>
 

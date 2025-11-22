@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, TextInput } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 
 export default function SignupScreen() {
@@ -8,6 +9,16 @@ export default function SignupScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  const onSignup = async () => {
+    if (!name || !email || !password) return;
+    if (password !== confirmPassword) return;
+    try {
+      await AsyncStorage.setItem('user', JSON.stringify({ name, email, password }));
+      await AsyncStorage.removeItem('isLoggedIn');
+      navigation.navigate('Login' as never);
+    } catch {}
+  };
 
   return (
     <ImageBackground
@@ -55,7 +66,7 @@ export default function SignupScreen() {
           />
         </View>
 
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Main' as never)}>
+        <TouchableOpacity style={styles.button} onPress={onSignup}>
           <Text style={styles.buttonText}>Registrati</Text>
         </TouchableOpacity>
 

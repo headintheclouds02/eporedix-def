@@ -1,7 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 
-export default function HomeScreen() {
+export default function HomeScreen({ route }) {
+  // Usa il personaggio passato, oppure uno di default
+  const character = route?.params?.character || {
+    name: "Adriano Olivetti",
+    image: require('../assets/images_profile/img_1.png'),
+  };
+
   return (
     <View style={styles.container}>
       {/* Qui sotto inserirai il modulo Unity per la mappa */}
@@ -16,11 +22,11 @@ export default function HomeScreen() {
       {/* Card personaggio */}
       <View style={styles.characterCard}>
         <Image
-          source={require('../assets/images_profile/img_1.png')}
+          source={character.image}
           style={styles.avatar}
         />
         <View style={styles.cardContent}>
-          <Text style={styles.cardTitle}>Segui il percorso di{'\n'}olivetti</Text>
+          <Text style={styles.cardTitle}>Segui il percorso di{'\n'}{character.name.split(' ')[0]}</Text>
           <TouchableOpacity style={styles.startButton}>
             <Text style={styles.startButtonText}>Inizia</Text>
           </TouchableOpacity>

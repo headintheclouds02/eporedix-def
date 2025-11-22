@@ -14,13 +14,20 @@ import SignupScreen from './screens/SignUpScreen';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function MainTabs() {
+function MainTabs({ route }) {
+  // Prendi il parametro character se presente
+  const character = route?.params?.character;
+
   return (
     <Tab.Navigator
       tabBar={(props) => <TapBarCustom {...props} />}
       screenOptions={{ headerShown: false }}
     >
-      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        initialParams={character ? { character } : undefined}
+      />
       <Tab.Screen name="Explore" component={ExploreScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>

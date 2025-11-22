@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
 
-export default function HomeScreen( { navigation } ) {
+export default function ExploreScreen( { navigation } ) {
 
   return (
-    <View>
-        <Text>Home Screen</Text>
+    <View style={styles.container}>
+        <Text>Explore Screen</Text>
     </View>
   );
 }

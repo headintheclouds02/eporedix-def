@@ -57,15 +57,14 @@ export default function ExploreScreen({ navigation }) {
         data={filteredEvents}
         keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => (
-          <View>
+          <TouchableOpacity onPress={() => navigation.navigate('DetailEvent', { event: item })}>
             <View style={styles.eventCard}>
               <Text style={styles.eventTime}>{item.time}</Text>
               <Text style={styles.eventTitle}>{item.title}</Text>
               <Text style={styles.eventLocation}>{item.location}</Text>
               <Text style={styles.eventDescription}>{item.description}</Text>
             </View>
-          </View>
-
+          </TouchableOpacity>
         )}
         ListEmptyComponent={<Text>Nessun evento per questa giornata.</Text>}
       />

@@ -10,6 +10,7 @@ import ChooseCharacter from './screens/ChooseCharacter';
 import SplashScreen from './screens/SplashScreen';
 import LoginScreen from './screens/LoginScreen';
 import SignupScreen from './screens/SignUpScreen';
+import DetailEvent from './components/DetailEvent';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -48,6 +49,7 @@ export default function App() {
         <Stack.Screen name="Signup" component={SignupScreen} />
         <Stack.Screen name="ChooseMode" component={ChooseMode} />
         <Stack.Screen name="ChooseCharacter" component={ChooseCharacter} />
+        <Stack.Screen name="DetailEvent" component={DetailEvent} />
         {/* Flusso principale con la tab bar */}
         <Stack.Screen name="Main" component={MainTabs} />
       </Stack.Navigator>

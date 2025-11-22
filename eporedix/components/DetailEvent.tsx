@@ -1,105 +1,120 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ImageBackground,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 type Event = {
   title: string;
   time: string;
   location: string;
   description: string;
-  image?: string;
 };
 
 type Props = {
-  event: Event;
+  event?: Event;
   onClose?: () => void;
   onBook?: () => void;
 };
 
-export default function DetailEvent({ event, onClose, onBook }: Props) {
+export default function DetailEvent(props: Props) {
+  const navigation = useNavigation();
+  const route = useRoute();
+
+  const event: Event | undefined = props.event || (route.params && (route.params as any).event);
+  const onClose = props.onClose || (() => navigation.goBack());
+
+  if (!event) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text>Nessun evento selezionato.</Text>
+      </View>
+    );
+  }
+
   return (
-    <View style={styles.overlay}>
-      <View style={styles.imageWrapper}>
-        {event.image && (
-          <Image source={{ uri: event.image }} style={styles.eventImage} />
-        )}
-        <TouchableOpacity style={styles.closeBtn} onPress={onClose}>
-          <Text style={styles.closeBtnText}>←</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.card}>
-        <Text style={styles.title}>{event.title}</Text>
-        <Text style={styles.time}>{event.time}</Text>
-        <Text style={styles.location}>{event.location}</Text>
+    <ImageBackground
+      source={require("../assets/detail_background.png")}
+      style={styles.background}
+      resizeMode="cover"
+    >
+      <TouchableOpacity style={styles.closeBtn} onPress={onClose}>
+        <Text style={styles.closeBtnText}>←</Text>
+      </TouchableOpacity>
+      <View style={styles.centeredContainer}>
+        <View style={styles.card}>
+          <Text style={styles.title}>{event.title}</Text>
+          <Text style={styles.time}>{event.time}</Text>
+          <Text style={styles.location}>{event.location}</Text>
 
-        <Text style={styles.sectionTitle}>Dettagli dell'evento</Text>
-        <ScrollView style={{ maxHeight: 90 }}>
-          <Text style={styles.description}>{event.description}</Text>
-        </ScrollView>
+          <Text style={styles.sectionTitle}>Dettagli dell'evento</Text>
+          <ScrollView style={{ maxHeight: 90 }}>
+            <Text style={styles.description}>{event.description}</Text>
+          </ScrollView>
 
-        <Text style={styles.sectionTitle}>Ospiti</Text>
-        <View style={styles.guestsRow}>
-          {/* Placeholder ospiti */}
-          <View style={styles.guestPlaceholder} />
-          <View style={styles.guestPlaceholder} />
-          <View style={styles.guestPlaceholder} />
-        </View>
+          <Text style={styles.sectionTitle}>Ospiti</Text>
+          <View style={styles.guestsRow}>
+            <View style={styles.guestPlaceholder} />
+            <View style={styles.guestPlaceholder} />
+            <View style={styles.guestPlaceholder} />
+          </View>
 
-        <TouchableOpacity>
-          <Text style={styles.mapLink}>Vedi sulla mappa</Text>
-        </TouchableOpacity>
-
-        <View style={styles.bottomRow}>
-          <TouchableOpacity style={styles.shareBtn}>
-            <Text style={styles.shareIcon}>⤴</Text>
+          <TouchableOpacity>
+            <Text style={styles.mapLink}>Vedi sulla mappa</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.bookBtn} onPress={onBook}>
-            <Text style={styles.bookBtnText}>Prenota</Text>
-          </TouchableOpacity>
+
+          <View style={styles.bottomRow}>
+            <TouchableOpacity style={styles.shareBtn}>
+              <Text style={styles.shareIcon}>⤴</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.bookBtn} onPress={props.onBook}>
+              <Text style={styles.bookBtnText}>Prenota</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-    </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  overlay: {
+  background: {
     flex: 1,
-    backgroundColor: "rgba(60,60,60,0.15)",
-    justifyContent: "flex-end",
-  },
-  imageWrapper: {
-    alignItems: "center",
-    position: "relative",
-  },
-  eventImage: {
-    width: "100%",
-    height: 120,
-    borderTopLeftRadius: 24,
-    borderTopRightRadius: 24,
-    resizeMode: "cover",
+    backgroundColor: "#F7F0EB",
   },
   closeBtn: {
     position: "absolute",
-    top: 16,
+    top: 70,
     left: 16,
     backgroundColor: "#fff",
     borderRadius: 16,
     padding: 6,
     elevation: 2,
+    zIndex: 2,
   },
   closeBtnText: {
     fontSize: 20,
     color: "#C0746D",
     fontWeight: "bold",
   },
+  centeredContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 8,
+  },
   card: {
     backgroundColor: "#fff",
     borderRadius: 24,
     padding: 20,
-    marginHorizontal: 8,
-    marginTop: -24,
+    width: "95%",
     shadowColor: "#000",
-    shadowOpacity: 0.10,
+    shadowOpacity: 0.1,
     shadowRadius: 8,
     elevation: 6,
   },

@@ -13,7 +13,7 @@ export default function ChooseMode({ navigation }) {
         <TouchableOpacity
           style={[styles.card, styles.cardTop]}
           activeOpacity={0.8}
-          onPress={() => navigation.replace("Main")}
+          onPress={() => navigation.replace("ChooseCharacter")}
         >
           <Text style={styles.cardText}>Esplora</Text>
           {/* <Image source={infoIcon} style={styles.infoIcon} /> */}

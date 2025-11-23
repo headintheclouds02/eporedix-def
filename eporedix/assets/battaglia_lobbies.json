@@ -1,0 +1,6 @@
+[
+  { "id": "ferruccio_nazionale", "title": "Piazza Ferruccio Nazionale", "steps": 500, "image": "piazza_ferrucci" },
+  { "id": "ottinetti", "title": "Piazza Ottinetti", "steps": 465, "image": "piazza_ottinetti" },
+  { "id": "gioberti", "title": "Piazza Vincenzo Gioberti", "steps": 312, "image": "piazza_gioberti" },
+  { "id": "aldo_balla", "title": "Piazza Aldo Balla", "steps": 1378, "image": "piazza_balla" }
+]

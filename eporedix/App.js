@@ -5,6 +5,7 @@ import HomeScreen from './screens/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import TapBarCustom from './components/TapBarCustom';
 import ExploreScreen from './screens/ExploreScreen';
+import BattleExploreScreen from './screens/Battaglia/ExploreScreen';
 import ChooseMode from './screens/ChooseMode';
 import ChooseCharacter from './screens/ChooseCharacter';
 import SplashScreen from './screens/SplashScreen';
@@ -46,6 +47,12 @@ function BattleTabs({ route }) {
 function MainTabs({ route }) {
   // Prendi il parametro character se presente
   const character = route?.params?.character;
+  const mode = route?.params?.mode;
+
+  const ExploreRouter = (props) => {
+    const Comp = mode === 'battle' ? BattleExploreScreen : ExploreScreen;
+    return <Comp {...props} />;
+  };
 
   return (
     <Tab.Navigator
@@ -58,7 +65,7 @@ function MainTabs({ route }) {
         component={HomeScreen}
         initialParams={character ? { character } : undefined}
       />
-      <Tab.Screen name="Explore" component={ExploreScreen} />
+      <Tab.Screen name="Explore" component={ExploreRouter} />
       <Tab.Screen
       name="Profile"
       component={ProfileScreen}

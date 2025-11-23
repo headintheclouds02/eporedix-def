@@ -1,0 +1,26 @@
+[
+  {
+    "id": "ferruccio_nazionale",
+    "title": "Piazza Ferruccio Nazionale",
+    "time": "08:30 - 09:30",
+    "description": "Percorso dedicato: tappe storiche nel centro."
+  },
+  {
+    "id": "ottinetti",
+    "title": "Piazza Ottinetti",
+    "time": "10:00 - 11:00",
+    "description": "Passeggiata culturale tra portici e piazza."
+  },
+  {
+    "id": "gioberti",
+    "title": "Piazza Vincenzo Gioberti",
+    "time": "11:30 - 12:15",
+    "description": "Percorso urbano con punti di interesse locali."
+  },
+  {
+    "id": "aldo_balla",
+    "title": "Piazza Aldo Balla",
+    "time": "15:00 - 16:00",
+    "description": "Tour tra negozi storici e scorci caratteristici."
+  }
+]

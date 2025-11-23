@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const characters = [
@@ -25,9 +26,10 @@ const characters = [
 export default function ChooseCharacter({ navigation }) {
     const [selected, setSelected] = useState(null);
 
-    const handleNext = () => {
+    const handleNext = async () => {
         if (selected !== null) {
-            navigation.replace("Main", { character: characters[selected] });
+            const mode = (await AsyncStorage.getItem('mode')) || 'explore';
+            navigation.replace("Main", { character: characters[selected], mode });
         }
     };
 

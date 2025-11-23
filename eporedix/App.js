@@ -12,6 +12,7 @@ import LoginScreen from './screens/LoginScreen';
 import SignupScreen from './screens/SignUpScreen';
 import DetailEvent from './components/DetailEvent';
 import TapBattle from './components/TapBattle';
+import BattleHomeScreen from './screens/BattleHomeScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -29,7 +30,7 @@ function BattleTabs({ route }) {
     >
       <Tab.Screen
         name="Home"
-        component={HomeScreen}
+        component={BattleHomeScreen}
         initialParams={character ? { character } : undefined}
       />
       <Tab.Screen name="Explore" component={ExploreScreen} />

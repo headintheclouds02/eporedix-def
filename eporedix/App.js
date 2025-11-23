@@ -23,6 +23,7 @@ function MainTabs({ route }) {
     <Tab.Navigator
       tabBar={(props) => <TapBarCustom {...props} />}
       screenOptions={{ headerShown: false }}
+      initialRouteName="Home"
     >
       <Tab.Screen
         name="Home"

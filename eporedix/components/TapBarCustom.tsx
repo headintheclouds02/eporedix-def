@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
   iconBgFocused: {
     backgroundColor: "#C0746D",
     paddingHorizontal: 32,
+    borderRadius: 16,
   },
   icon: {
     width: 28,

@@ -72,7 +72,6 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOpacity: 0.07,
     shadowRadius: 8,
-    elevation: 3,
     alignItems: 'center',
   },
   welcomeTitle: {
@@ -100,7 +99,6 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOpacity: 0.10,
     shadowRadius: 10,
-    elevation: 4,
   },
   avatar: {
     width: 64,
@@ -129,7 +127,6 @@ const styles = StyleSheet.create({
     shadowColor: '#C0746D',
     shadowOpacity: 0.15,
     shadowRadius: 4,
-    elevation: 2,
   },
   startButtonText: {
     color: '#fff',

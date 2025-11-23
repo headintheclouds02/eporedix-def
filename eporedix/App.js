@@ -11,9 +11,36 @@ import SplashScreen from './screens/SplashScreen';
 import LoginScreen from './screens/LoginScreen';
 import SignupScreen from './screens/SignUpScreen';
 import DetailEvent from './components/DetailEvent';
+import TapBattle from './components/TapBattle';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+const TabBattaglia = createBottomTabNavigator();
+
+function BattleTabs({ route }) {
+  // Prendi il parametro character se presente
+  const character = route?.params?.character;
+
+  return (
+    <TabBattaglia.Navigator
+      tabBar={(props) => <TapBattle {...props} />}
+      screenOptions={{ headerShown: false }}
+      initialRouteName="Home"
+    >
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        initialParams={character ? { character } : undefined}
+      />
+      <Tab.Screen name="Explore" component={ExploreScreen} />
+      <Tab.Screen
+      name="Profile"
+      component={ProfileScreen}
+      initialParams={character ? { character } : undefined}
+      />
+    </TabBattaglia.Navigator>
+  );
+}
 
 function MainTabs({ route }) {
   // Prendi il parametro character se presente
@@ -53,6 +80,8 @@ export default function App() {
         <Stack.Screen name="DetailEvent" component={DetailEvent} />
         {/* Flusso principale con la tab bar */}
         <Stack.Screen name="Main" component={MainTabs} />
+
+        <Stack.Screen name="BattleMode" component={BattleTabs} />
       </Stack.Navigator>
     </NavigationContainer>
   );

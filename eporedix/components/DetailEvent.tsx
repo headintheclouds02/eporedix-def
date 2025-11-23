@@ -26,7 +26,8 @@ export default function DetailEvent(props: Props) {
   const navigation = useNavigation();
   const route = useRoute();
 
-  const event: Event | undefined = props.event || (route.params && (route.params as any).event);
+  const event: Event | undefined =
+    props.event || (route.params && (route.params as any).event);
   const onClose = props.onClose || (() => navigation.goBack());
 
   if (!event) {
@@ -42,6 +43,7 @@ export default function DetailEvent(props: Props) {
       source={require("../assets/detail_background.png")}
       style={styles.background}
       resizeMode="cover"
+      imageStyle={{ opacity: 0.25 }}
     >
       <TouchableOpacity style={styles.closeBtn} onPress={onClose}>
         <Text style={styles.closeBtnText}>←</Text>

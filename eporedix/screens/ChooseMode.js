@@ -22,7 +22,7 @@ export default function ChooseMode({ navigation }) {
         <TouchableOpacity
           style={[styles.card, styles.cardBottom]}
           activeOpacity={0.8}
-          onPress={() => navigation.replace("Main")}
+          onPress={() => navigation.replace("BattleMode")}
         >
           <Text style={styles.cardText}>Battaglia</Text>
           {/* <Image source={infoIcon} style={styles.infoIcon} /> */}

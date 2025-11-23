@@ -27,7 +27,8 @@ export default function LoginScreen() {
 
       if (savedEmail === inputEmail && saved.password === password) {
         await AsyncStorage.setItem('isLoggedIn', 'true');
-        navigation.reset({ index: 0, routes: [{ name: 'Main' as never }] });
+        navigation.reset({ index: 0, routes: [{ name: 'ChooseMode' as never }] });
+
         setError('');
       } else {
         setError('Credenziali non valide');

@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Image, Switch, TouchableOpacity } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -20,7 +20,7 @@ export default function ProfileScreen({ route }) {
     const onLogout = async () => {
         try {
             await AsyncStorage.removeItem('isLoggedIn');
-            navigation.navigate('Login');
+            navigation.reset({ index: 0, routes: [{ name: 'Login' }] });
         } catch {}
     };
 

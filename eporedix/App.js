@@ -5,7 +5,7 @@ import HomeScreen from './screens/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import TapBarCustom from './components/TapBarCustom';
 import ExploreScreen from './screens/ExploreScreen';
-import BattleExploreScreen from './screens/Battaglia/ExploreScreen';
+import BattleExploreScreen from './screens/Battaglia/LobbyScreen';
 import ChooseMode from './screens/ChooseMode';
 import ChooseCharacter from './screens/ChooseCharacter';
 import SplashScreen from './screens/SplashScreen';
@@ -14,6 +14,8 @@ import SignupScreen from './screens/SignUpScreen';
 import DetailEvent from './components/DetailEvent';
 import TapBattle from './components/TapBattle';
 import BattleHomeScreen from './screens/BattleHomeScreen';
+import LobbyScreen from './screens/Battaglia/LobbyScreen';
+import LobbyDetailEvent from './components/LobbyDetailEvent';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -34,7 +36,7 @@ function BattleTabs({ route }) {
         component={BattleHomeScreen}
         initialParams={character ? { character } : undefined}
       />
-      <Tab.Screen name="Explore" component={ExploreScreen} />
+      <Tab.Screen name="Explore" component={LobbyScreen} />
       <Tab.Screen
       name="Profile"
       component={ProfileScreen}
@@ -86,6 +88,7 @@ export default function App() {
         <Stack.Screen name="ChooseMode" component={ChooseMode} />
         <Stack.Screen name="ChooseCharacter" component={ChooseCharacter} />
         <Stack.Screen name="DetailEvent" component={DetailEvent} />
+        <Stack.Screen name="LobbyDetailEvent" component={LobbyDetailEvent} />
         {/* Flusso principale con la tab bar */}
         <Stack.Screen name="Main" component={MainTabs} />
 

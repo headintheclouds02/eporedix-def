@@ -12,14 +12,14 @@ const images = {
   piazza_balla: require("../../assets/images_lobby/piazza_balla.jpg"),
 };
 
-export default function ExploreScreen() {
+export default function LobbyScreen() {
   const navigation = useNavigation();
   const renderItem = ({ item }) => (
     <TouchableOpacity style={styles.card} activeOpacity={0.85}
       onPress={() => {
         const d = details.find((e) => e.id === item.id);
         const event = d ? { title: d.title, time: d.time, location: "Centro di Ivrea", description: d.description } : { title: item.title, time: "", location: "Centro di Ivrea", description: "" };
-        navigation.navigate("DetailEvent", { event });
+        navigation.navigate("LobbyDetailEvent", { event });
       }}
     >
       <View style={styles.cardLeft}>

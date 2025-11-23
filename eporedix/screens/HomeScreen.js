@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import MapView, { Marker, PROVIDER_DEFAULT } from 'react-native-maps';
 
 export default function HomeScreen({ route }) {
   // Usa il personaggio passato, oppure uno di default
@@ -10,8 +11,18 @@ export default function HomeScreen({ route }) {
 
   return (
     <View style={styles.container}>
-      {/* Qui sotto inserirai il modulo Unity per la mappa */}
-      <View style={styles.mapPlaceholder} />
+      <MapView
+        provider={PROVIDER_DEFAULT}
+        style={styles.map}
+        initialRegion={{
+          latitude: 45.4669,
+          longitude: 7.8765,
+          latitudeDelta: 0.01,
+          longitudeDelta: 0.01,
+        }}
+      >
+        <Marker coordinate={{ latitude: 45.4669, longitude: 7.8765 }} />
+      </MapView>
 
       {/* Box di benvenuto */}
       <View style={styles.welcomeBox}>
@@ -26,7 +37,9 @@ export default function HomeScreen({ route }) {
           style={styles.avatar}
         />
         <View style={styles.cardContent}>
-          <Text style={styles.cardTitle}>Segui il percorso di{'\n'}{character.name.split()[0]}</Text>
+          <Text style={styles.cardTitle}>
+            Segui il percorso di{'\n'}{character.name.split(' ')[0]}
+          </Text>
           <TouchableOpacity style={styles.startButton}>
             <Text style={styles.startButtonText}>Inizia</Text>
           </TouchableOpacity>
@@ -44,7 +57,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F7F3EF',
   },
-  mapPlaceholder: {
+  map: {
     ...StyleSheet.absoluteFillObject,
     zIndex: 0,
   },

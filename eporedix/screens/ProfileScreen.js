@@ -1,5 +1,6 @@
-﻿import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Image, Switch, TouchableOpacity } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 
@@ -7,23 +8,51 @@ const ICON_DARK_MODE = require("../assets/icons/dark_mode.png");
 const ICON_LANGUAGE = require("../assets/icons/language.png");
 const ICON_CHANGE_MODE = require("../assets/icons/change_mod.png");
 
+
 export default function ProfileScreen({ route }) {
     const navigation = useNavigation();
     const [darkMode, setDarkMode] = useState(false);
+    const [userName, setUserName] = useState("");
+    const [userEmail, setUserEmail] = useState("");
     const progress = 0.7;
     const AVATAR = route?.params?.character?.image || require("../assets/images_profile/img_1.png");
 
-    return (
-        <SafeAreaView style={styles.container}>
-            <Text style={styles.screenTitle}>Profilo</Text>
+    const onLogout = async () => {
+        try {
+            await AsyncStorage.removeItem('isLoggedIn');
+            navigation.reset({ index: 0, routes: [{ name: 'Login' }] });
+        } catch {}
+    };
 
-            <View style={styles.profileCard}>
-                <View style={styles.avatarWrapper}>
-                    <Image source={AVATAR} style={styles.avatar} />
-                </View>
-                <Text style={styles.name}>Mario Rossi</Text>
-                <Text style={styles.email}>mario.rossi@gmail.com</Text>
-            </View>
+
+  useEffect(() => {
+    const loadUser = async () => {
+      try {
+        const raw = await AsyncStorage.getItem('user');
+        if (raw) {
+          const u = JSON.parse(raw);
+          setUserName(u.name || "");
+          setUserEmail(u.email || "");
+        }
+      } catch {}
+    };
+    loadUser();
+  }, []);
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.screenTitle}>Profilo</Text>
+
+      <View style={styles.profileCard}>
+        <View style={styles.avatarWrapper}>
+          <Image source={AVATAR} style={styles.avatar} />
+          <TouchableOpacity style={styles.badge} activeOpacity={0.8}>
+            <Text style={styles.badgeText}>+</Text>
+          </TouchableOpacity>
+        </View>
+        <Text style={styles.name}>{userName || "Mario Rossi"}</Text>
+        <Text style={styles.email}>{userEmail || "mario.rossi@gmail.com"}</Text>
+      </View>
 
             <View style={styles.section}>
                 <Text style={styles.sectionLabel}>Il tuo avanzamento</Text>
@@ -67,6 +96,9 @@ export default function ProfileScreen({ route }) {
                 <Text style={styles.modeText}>Cambia modalità</Text>
                 
                 <Text style={styles.chevronLight}>{">"}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.logoutButton} activeOpacity={0.85} onPress={onLogout}>
+                <Text style={styles.logoutText}>Disconnetti</Text>
             </TouchableOpacity>
         </SafeAreaView>
     );
@@ -224,6 +256,15 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
     },
+    logoutButton: {
+        backgroundColor: "#c54949",
+        borderRadius: 16,
+        paddingVertical: 14,
+        paddingHorizontal: 14,
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 12,
+    },
     modeIcon: {
         width: 25,
         height: 25,
@@ -235,6 +276,11 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: "600",
         flex: 1,
+    },
+    logoutText: {
+        color: "#f7f0eb",
+        fontSize: 15,
+        fontWeight: "700",
     },
     settingIcon: {
         width: 25,

@@ -10,9 +10,9 @@ const icons: Record<string, any> = {
 };
 
 const activeColor = "#F7F3EF";
-const inactiveColor = "#C48C8C";
+const inactiveColor = "#71a7ab";
 
-export default function TabBarCustom({ state, navigation }: BottomTabBarProps) {
+export default function TabBattle({ state, navigation }: BottomTabBarProps) {
   return (
     <SafeAreaView edges={["bottom"]} style={styles.safeArea}> 
       <View style={styles.container}>
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
   },
   iconBgFocused: {
-    backgroundColor: "#C0746D",
+    backgroundColor: "#71a7ab",
     paddingHorizontal: 32,
     borderRadius: 16,
   },

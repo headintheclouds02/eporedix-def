@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import MapView, { Marker, PROVIDER_DEFAULT } from 'react-native-maps';
 
-export default function HomeScreen({ route }) {
+export default function BattleHomeScreen({ route }) {
   // Usa il personaggio passato, oppure uno di default
   const character = route?.params?.character || {
     name: "Adriano Olivetti",
@@ -30,22 +30,11 @@ export default function HomeScreen({ route }) {
         <Text style={styles.welcomeSubtitle}>Scopri la Grande Invasione con noi!</Text>
       </View>
 
-      {/* Card personaggio */}
-      <View style={styles.characterCard}>
-        <Image
-          source={character.image}
-          style={styles.avatar}
-        />
-        <View style={styles.cardContent}>
-          <Text style={styles.cardTitle}>
-            Segui il percorso di{'\n'}{character.name.split(' ')[0]}
-          </Text>
-          <TouchableOpacity style={styles.startButton}>
-            <Text style={styles.startButtonText}>Inizia</Text>
-          </TouchableOpacity>
-        </View>
-        <TouchableOpacity style={styles.closeButton}>
-          <Text style={styles.closeButtonText}>×</Text>
+      {/* Card in basso */}
+      <View style={styles.lobbyCard}>
+        <Text style={styles.lobbyTitle}>Raggiungi la lobby{'\n'}più vicina</Text>
+        <TouchableOpacity style={styles.lobbyButton} disabled>
+          <Text style={styles.lobbyButtonText}>Inizia</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -86,61 +75,40 @@ const styles = StyleSheet.create({
     color: '#7C5C5C',
     textAlign: 'center',
   },
-  characterCard: {
+  lobbyCard: {
     position: 'absolute',
     left: 16,
     right: 16,
-    bottom: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#fff',
+    bottom: 32,
+    backgroundColor: '#ffffffcc', // bianco trasparente
     borderRadius: 24,
-    padding: 16,
+    alignItems: 'center',
+    paddingVertical: 18,
+    paddingHorizontal: 18,
     shadowColor: '#000',
-    shadowOpacity: 0.10,
-    shadowRadius: 10,
+    shadowOpacity: 0.07,
+    shadowRadius: 8,
   },
-  avatar: {
-    width: 64,
-    height: 64,
-    borderRadius: 32,
-    marginRight: 12,
-    backgroundColor: '#E0E0E0',
-  },
-  cardContent: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  cardTitle: {
+  lobbyTitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#4B2E2B',
+    color: '#222',
+    textAlign: 'center',
     marginBottom: 8,
   },
-  startButton: {
-    backgroundColor: '#C0746D',
+  lobbyButton: {
+    backgroundColor: '#B9D6D2', // azzurro chiaro
     borderRadius: 16,
     paddingVertical: 10,
-    paddingHorizontal: 32,
+    paddingHorizontal: 60,
     alignItems: 'center',
-    alignSelf: 'flex-start',
-    shadowColor: '#C0746D',
-    shadowOpacity: 0.15,
-    shadowRadius: 4,
+    alignSelf: 'center',
+    opacity: 0.5, // effetto disabilitato
+    marginTop: 2,
   },
-  startButtonText: {
-    color: '#fff',
+  lobbyButtonText: {
+    color: '#888',
     fontSize: 18,
-    fontWeight: 'bold',
-  },
-  closeButton: {
-    marginLeft: 8,
-    padding: 4,
-    alignSelf: 'flex-start',
-  },
-  closeButtonText: {
-    fontSize: 22,
-    color: '#4B2E2B',
     fontWeight: 'bold',
   },
 });

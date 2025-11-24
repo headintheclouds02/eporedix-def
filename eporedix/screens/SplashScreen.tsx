@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ImageBackground  } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function SplashScreen() {
   const navigation = useNavigation();
@@ -23,6 +24,18 @@ export default function SplashScreen() {
   ];
 
   const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const checkLogin = async () => {
+      try {
+        const logged = await AsyncStorage.getItem('isLoggedIn');
+        if (logged === 'true') {
+          navigation.reset({ index: 0, routes: [{ name: 'Main' as never }] });
+        }
+      } catch {}
+    };
+    checkLogin();
+  }, []);
 
   const next = () => {
     if (index < slides.length - 1) {

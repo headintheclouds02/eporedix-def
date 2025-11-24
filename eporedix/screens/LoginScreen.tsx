@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -6,6 +7,34 @@ export default function LoginScreen() {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+
+  const onLogin = async () => {
+    try {
+      const raw = await AsyncStorage.getItem('user');
+
+      if (!raw) {
+        setError('Credenziali non valide');
+        return;
+      }
+      const saved = JSON.parse(raw);
+
+      // Normalizza email dell’input e quella salvata
+      const inputEmail = email.trim().toLowerCase();
+      const savedEmail = (saved.email || '').trim().toLowerCase();
+
+
+      if (savedEmail === inputEmail && saved.password === password) {
+        await AsyncStorage.setItem('isLoggedIn', 'true');
+        navigation.reset({ index: 0, routes: [{ name: 'ChooseMode' as never }] });
+
+        setError('');
+      } else {
+        setError('Credenziali non valide');
+      }
+    } catch {}
+  };
 
   return (
     <ImageBackground
@@ -33,17 +62,24 @@ export default function LoginScreen() {
               keyboardType="email-address"
               autoCapitalize="none"
             />
-            <TextInput
-              value={password}
-              onChangeText={setPassword}
-              placeholder="Password"
-              placeholderTextColor="#d9d9d9"
-              style={styles.input}
-              secureTextEntry
-            />
+            <View style={styles.passwordWrapper}>
+              <TextInput
+                value={password}
+                onChangeText={setPassword}
+                placeholder="Password"
+                placeholderTextColor="#d9d9d9"
+                style={styles.input}
+                secureTextEntry={!showPassword}
+              />
+              <TouchableOpacity style={styles.eyeButton} onPress={() => setShowPassword(!showPassword)}>
+                <Text style={styles.eyeText}>{showPassword ? '👁️' : '🙈'}</Text>
+              </TouchableOpacity>
+            </View>
           </View>
 
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ChooseMode' as never)}>
+          {error ? <Text style={styles.errorText}>{error}</Text> : null}
+
+          <TouchableOpacity style={styles.button} onPress={onLogin}>
             <Text style={styles.buttonText}>Accedi</Text>
           </TouchableOpacity>
 
@@ -124,5 +160,24 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontSize: 14,
     fontWeight: '700',
+  },
+  errorText: {
+    color: '#c54949',
+    fontSize: 13,
+    marginTop: 8,
+    textAlign: 'center',
+  },
+  passwordWrapper: {
+    position: 'relative',
+  },
+  eyeButton: {
+    position: 'absolute',
+    right: 0,
+    top: 6,
+    padding: 8,
+  },
+  eyeText: {
+    color: '#d9d9d9',
+    fontSize: 18,
   },
 });

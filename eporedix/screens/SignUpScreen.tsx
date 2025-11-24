@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -8,6 +9,33 @@ export default function SignupScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const onSignup = async () => {
+    const cleanEmail = email.trim().toLowerCase();
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail);
+    if (!name || !cleanEmail || !password) return;
+    if (!emailOk) {
+      setEmailError('Email non valida');
+      return;
+    } else {
+      setEmailError('');
+    }
+    if (password !== confirmPassword) {
+      setPasswordError('Le password non coincidono');
+      return;
+    } else {
+      setPasswordError('');
+    }
+    try {
+      await AsyncStorage.setItem('user', JSON.stringify({ name, email: cleanEmail, password }));
+      await AsyncStorage.removeItem('isLoggedIn');
+      navigation.navigate('Login' as never);
+    } catch {}
+  };
 
   return (
     <ImageBackground
@@ -42,25 +70,37 @@ export default function SignupScreen() {
             keyboardType="email-address"
             autoCapitalize="none"
           />
-          <TextInput
-            value={password}
-            onChangeText={setPassword}
-            placeholder="Password"
-            placeholderTextColor="#d9d9d9"
-            style={styles.input}
-            secureTextEntry
-          />
-          <TextInput
-            value={confirmPassword}
-            onChangeText={setConfirmPassword}
-            placeholder="Conferma Password"
-            placeholderTextColor="#d9d9d9"
-            style={styles.input}
-            secureTextEntry
-          />
+          {emailError ? <Text style={styles.errorText}>{emailError}</Text> : null}
+          <View style={styles.passwordWrapper}>
+            <TextInput
+              value={password}
+              onChangeText={setPassword}
+              placeholder="Password"
+              placeholderTextColor="#d9d9d9"
+              style={styles.input}
+              secureTextEntry={!showPassword}
+            />
+            <TouchableOpacity style={styles.eyeButton} onPress={() => setShowPassword(!showPassword)}>
+              <Text style={styles.eyeText}>{showPassword ? '👁️' : '🙈'}</Text>
+            </TouchableOpacity>
+          </View>
+          {passwordError ? <Text style={styles.errorText}>{passwordError}</Text> : null}
+          <View style={styles.passwordWrapper}>
+            <TextInput
+              value={confirmPassword}
+              onChangeText={setConfirmPassword}
+              placeholder="Conferma Password"
+              placeholderTextColor="#d9d9d9"
+              style={styles.input}
+              secureTextEntry={!showConfirmPassword}
+            />
+            <TouchableOpacity style={styles.eyeButton} onPress={() => setShowConfirmPassword(!showConfirmPassword)}>
+              <Text style={styles.eyeText}>{showConfirmPassword ? '👁️' : '🙈'}</Text>
+            </TouchableOpacity>
+          </View>
         </View>
 
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ChooseMode' as never)}>
+        <TouchableOpacity style={styles.button} onPress={onSignup}>
           <Text style={styles.buttonText}>Registrati</Text>
         </TouchableOpacity>
 
@@ -141,5 +181,24 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontSize: 14,
     fontWeight: '700',
+  },
+  errorText: {
+    color: '#c54949',
+    fontSize: 13,
+    marginTop: -12,
+    marginBottom: 18,
+  },
+  passwordWrapper: {
+    position: 'relative',
+  },
+  eyeButton: {
+    position: 'absolute',
+    right: 0,
+    top: 6,
+    padding: 8,
+  },
+  eyeText: {
+    color: '#d9d9d9',
+    fontSize: 18,
   },
 });

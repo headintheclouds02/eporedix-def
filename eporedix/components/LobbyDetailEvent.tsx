@@ -22,7 +22,7 @@ type Props = {
   onBook?: () => void;
 };
 
-export default function DetailEvent(props: Props) {
+export default function LobbyDetailEvent(props: Props) {
   const navigation = useNavigation();
   const route = useRoute();
 
@@ -40,10 +40,10 @@ export default function DetailEvent(props: Props) {
 
   return (
     <ImageBackground
-      source={require("../assets/detail_background.png")}
+      source={require("../assets/backgroundLobby1.jpg")}
       style={styles.background}
       resizeMode="cover"
-      imageStyle={{ opacity: 0.25 }}
+      imageStyle={{ width: "100%", height: "100%", opacity: 0.25 }}
     >
       <TouchableOpacity style={styles.closeBtn} onPress={onClose}>
         <Text style={styles.closeBtnText}>←</Text>
@@ -54,13 +54,20 @@ export default function DetailEvent(props: Props) {
           <Text style={styles.time}>{event.time}</Text>
           <Text style={styles.location}>{event.location}</Text>
 
-          <Text style={styles.sectionTitle}>Dettagli dell'evento</Text>
-          <ScrollView style={{ maxHeight: 90 }}>
-            <Text style={styles.description}>{event.description}</Text>
-          </ScrollView>
+          <Text style={styles.sectionTitle}>Dettagli</Text>
+          <Text style={styles.description}>{event.description}</Text>
 
-          <Text style={styles.sectionTitle}>Ospiti</Text>
+          <Text style={styles.sectionTitleAzzurra}>Persone interessate</Text>
           <View style={styles.guestsRow}>
+            <View style={styles.guestPlaceholder} />
+            <View style={styles.guestPlaceholder} />
+            <View style={styles.guestPlaceholder} />
+            <View style={styles.guestPlaceholder} />
+          </View>
+
+          <Text style={styles.sectionTitleAzzurra}>Persone nelle vicinanze</Text>
+          <View style={styles.guestsRow}>
+            <View style={styles.guestPlaceholder} />
             <View style={styles.guestPlaceholder} />
             <View style={styles.guestPlaceholder} />
             <View style={styles.guestPlaceholder} />
@@ -75,7 +82,7 @@ export default function DetailEvent(props: Props) {
               <Text style={styles.shareIcon}>⤴</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.bookBtn} onPress={props.onBook}>
-              <Text style={styles.bookBtnText}>Prenota</Text>
+              <Text style={styles.bookBtnText}>Mi interessa</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -88,6 +95,8 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     backgroundColor: "#F7F0EB",
+    width: '100%',
+    height: '100%', 
   },
   closeBtn: {
     position: "absolute",
@@ -101,7 +110,7 @@ const styles = StyleSheet.create({
   },
   closeBtnText: {
     fontSize: 20,
-    color: "#C0746D",
+    color: "#222",
     fontWeight: "bold",
   },
   centeredContainer: {
@@ -111,41 +120,48 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
   },
   card: {
-    backgroundColor: "#fff",
+    backgroundColor: "#F7F7F4",
     borderRadius: 24,
-    padding: 20,
+    padding: 22,
     width: "95%",
     shadowColor: "#000",
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.08,
     shadowRadius: 8,
     elevation: 6,
   },
   title: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "#4B2E2B",
+    color: "#222",
     marginBottom: 4,
   },
   time: {
     fontSize: 14,
-    color: "#C0746D",
+    color: "#222",
     marginBottom: 2,
   },
   location: {
     fontSize: 14,
-    color: "#7C5C5C",
+    color: "#222",
     marginBottom: 12,
   },
   sectionTitle: {
     fontSize: 15,
-    color: "#C0746D",
+    color: "#222",
+    fontWeight: "bold",
+    marginTop: 12,
+    marginBottom: 4,
+  },
+  sectionTitleAzzurra: {
+    fontSize: 15,
+    color: "#7DB8B3",
     fontWeight: "bold",
     marginTop: 12,
     marginBottom: 4,
   },
   description: {
     fontSize: 14,
-    color: "#444",
+    color: "#222",
     marginBottom: 8,
   },
   guestsRow: {
@@ -158,13 +174,15 @@ const styles = StyleSheet.create({
     height: 36,
     borderRadius: 8,
     backgroundColor: "#E3E0DE",
+    marginRight: 8,
   },
   mapLink: {
-    color: "#4B2E2B",
+    color: "#222",
     fontWeight: "bold",
     marginBottom: 12,
     marginTop: 4,
     textDecorationLine: "underline",
+    fontSize: 15,
   },
   bottomRow: {
     flexDirection: "row",
@@ -178,18 +196,19 @@ const styles = StyleSheet.create({
     padding: 10,
     borderWidth: 1,
     borderColor: "#E3E0DE",
+    marginRight: 8,
   },
   shareIcon: {
     fontSize: 18,
-    color: "#C0746D",
+    color: "#7DB8B3",
   },
   bookBtn: {
-    backgroundColor: "#C0746D",
+    backgroundColor: "#7DB8B3",
     borderRadius: 16,
     paddingVertical: 12,
-    paddingHorizontal: 32,
+    paddingHorizontal: 48,
     alignItems: "center",
-    shadowColor: "#C0746D",
+    shadowColor: "#7DB8B3",
     shadowOpacity: 0.15,
     shadowRadius: 4,
     elevation: 2,

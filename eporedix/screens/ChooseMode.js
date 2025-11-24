@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // const infoIcon = require("../assets/icons/info.png");
 const background = require("../assets/icons/background.png");
@@ -13,7 +14,7 @@ export default function ChooseMode({ navigation }) {
         <TouchableOpacity
           style={[styles.card, styles.cardTop]}
           activeOpacity={0.8}
-          onPress={() => navigation.replace("ChooseCharacter")}
+          onPress={async () => { await AsyncStorage.setItem('mode', 'explore'); navigation.replace("ChooseCharacter"); }}
         >
           <Text style={styles.cardText}>Esplora</Text>
           {/* <Image source={infoIcon} style={styles.infoIcon} /> */}
@@ -22,7 +23,7 @@ export default function ChooseMode({ navigation }) {
         <TouchableOpacity
           style={[styles.card, styles.cardBottom]}
           activeOpacity={0.8}
-          onPress={() => navigation.replace("Main")}
+          onPress={() => navigation.replace("BattleMode")}
         >
           <Text style={styles.cardText}>Battaglia</Text>
           {/* <Image source={infoIcon} style={styles.infoIcon} /> */}

@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import MapView, { Marker, PROVIDER_DEFAULT } from 'react-native-maps';
+import BottomSheetMonument from '../components/BottomSheetMonument';
+const monuments = require('../data/monuments.json');
 
 export default function HomeScreen({ route }) {
   // Usa il personaggio passato, oppure uno di default
@@ -8,6 +10,8 @@ export default function HomeScreen({ route }) {
     name: "Adriano Olivetti",
     image: require('../assets/images_profile/img_1.png'),
   };
+  const mapRef = useRef(null);
+  const [selected, setSelected] = useState(null);
 
   return (
     <View style={styles.container}>
@@ -20,9 +24,37 @@ export default function HomeScreen({ route }) {
           latitudeDelta: 0.01,
           longitudeDelta: 0.01,
         }}
+        ref={mapRef}
       >
+        {monuments.map((m) => (
+          <Marker key={m.id} coordinate={{ latitude: m.lat, longitude: m.lng }} onPress={() => setSelected(m)}>
+            <View style={styles.monumentMarker}>
+              <Text style={styles.monumentIcon}>🏛️</Text>
+            </View>
+          </Marker>
+        ))}
         <Marker coordinate={{ latitude: 45.4669, longitude: 7.8765 }} />
       </MapView>
+
+      {selected ? (
+        <BottomSheetMonument
+          monument={selected}
+          onClose={() => setSelected(null)}
+          onGo={() => {
+            if (mapRef.current && selected) {
+              mapRef.current.animateToRegion(
+                {
+                  latitude: selected.lat,
+                  longitude: selected.lng,
+                  latitudeDelta: 0.005,
+                  longitudeDelta: 0.005,
+                },
+                600
+              );
+            }
+          }}
+        />
+      ) : null}
 
       {/* Box di benvenuto */}
       <View style={styles.welcomeBox}>
@@ -60,6 +92,18 @@ const styles = StyleSheet.create({
   map: {
     ...StyleSheet.absoluteFillObject,
     zIndex: 0,
+  },
+  monumentMarker: {
+    backgroundColor: '#C0746D',
+    borderRadius: 16,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderWidth: 1,
+    borderColor: '#b35f5f',
+  },
+  monumentIcon: {
+    color: '#F7F3EF',
+    fontSize: 16,
   },
   welcomeBox: {
     position: 'absolute',

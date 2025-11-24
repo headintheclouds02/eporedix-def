@@ -1,0 +1,56 @@
+[
+  {
+    "id": "monte_stella",
+    "title": "Santuario di Monte Stella",
+    "description": "Dedicato alla Madonna nera di tradizione bizantina, fu costruito nel 1627 e ampliato nel 1658. Dell’edificio originale restano il campanile e una parete accanto all’attuale chiesa, ricostruita nel XIX secolo con pianta circolare.",
+    "steps": 500,
+    "lat": 45.472490603480395,
+    "lng": 7.881987824776047, 
+    "image": "img_1"
+  },
+  {
+    "id": "piazza_ottinetti_mon",
+    "title": "Piazza Ottinetti",
+    "description": "Centro storico con portici e piazza, punto di ritrovo culturale.",
+    "steps": 465,
+    "lat": 45.467375562709435,
+    "lng": 7.878270925148913,
+    "image": "img_2"
+  },
+  {
+    "id": "torre_civica",
+    "title": "Torre Civica",
+    "description": "Storica torre nel cuore di Ivrea, simbolo cittadino.",
+    "steps": 312,
+    "lat": 45.46631982755274,
+    "lng": 7.87596385647442,
+    "image": "img_3"
+  },
+  {
+    "id": "duomo_ivrea",
+    "title": "Duomo di Ivrea (Cattedrale di Santa Maria Assunta)",
+    "description": "Cattedrale romanica e barocca dedicata a Santa Maria Assunta, con origini paleocristiane, cripta affrescata e resti di un antico tempio romano.",
+    "steps": 340,
+    "lat": 45.46821216502331, 
+    "lng": 7.875439198262044,
+    "image": "img_4"
+  },
+  {
+    "id": "chiesa_san_bernardino",
+    "title": "Chiesa di San Bernardino",
+    "description": "Chiesa quattrocentesca con annesso ex convento francescano, celebre per il grande ciclo di affreschi di Giovanni Martino Spanzotti.",
+    "steps": 1100,
+    "lat": 45.45894025412584,
+    "lng": 7.8755821417692555,
+    "image": "img_5"
+  },
+  {
+    "id": "castello_ivrea",
+    "title": "Castello Sabaudo",
+    "description": "Castello medievale del XIV secolo, detto \"dalle rosse torri\", costruito dai Savoia come fortificazione e oggi importante simbolo cittadino.",
+    "steps": 360,
+    "lat": 45.467795268096765,
+    "lng": 7.87415998220759,
+    "image": "img_6"
+  }
+]

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import MapView, { Marker, PROVIDER_DEFAULT } from 'react-native-maps';
 import BottomSheetMonument from '../components/BottomSheetMonument';
@@ -12,6 +12,21 @@ export default function HomeScreen({ route }) {
   };
   const mapRef = useRef(null);
   const [selected, setSelected] = useState(null);
+  const center = route?.params?.center;
+
+  useEffect(() => {
+    if (center && mapRef.current) {
+      mapRef.current.animateToRegion(
+        {
+          latitude: center.lat,
+          longitude: center.lng,
+          latitudeDelta: 0.005,
+          longitudeDelta: 0.005,
+        },
+        600
+      );
+    }
+  }, [center]);
 
   return (
     <View style={styles.container}>
@@ -39,6 +54,7 @@ export default function HomeScreen({ route }) {
       {selected ? (
         <BottomSheetMonument
           monument={selected}
+          suggested={monuments.filter((m) => m.id !== selected.id).slice(0, 3)}
           onClose={() => setSelected(null)}
           onGo={() => {
             if (mapRef.current && selected) {
@@ -53,6 +69,7 @@ export default function HomeScreen({ route }) {
               );
             }
           }}
+          onSelectMonument={(m) => setSelected(m)}
         />
       ) : null}
 

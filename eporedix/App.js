@@ -12,6 +12,7 @@ import SplashScreen from './screens/SplashScreen';
 import LoginScreen from './screens/LoginScreen';
 import SignupScreen from './screens/SignUpScreen';
 import DetailEvent from './components/DetailEvent';
+import MonumentDetailScreen from './screens/MonumentDetailScreen';
 import TapBattle from './components/TapBattle';
 import BattleHomeScreen from './screens/BattleHomeScreen';
 import LobbyScreen from './screens/Battaglia/LobbyScreen';
@@ -88,6 +89,7 @@ export default function App() {
         <Stack.Screen name="ChooseMode" component={ChooseMode} />
         <Stack.Screen name="ChooseCharacter" component={ChooseCharacter} />
         <Stack.Screen name="DetailEvent" component={DetailEvent} />
+        <Stack.Screen name="MonumentDetail" component={MonumentDetailScreen} />
         <Stack.Screen name="LobbyDetailEvent" component={LobbyDetailEvent} />
         {/* Flusso principale con la tab bar */}
         <Stack.Screen name="Main" component={MainTabs} />

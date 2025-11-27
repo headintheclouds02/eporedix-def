@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import type { NavigationProp } from '@react-navigation/native';
 
 type Monument = {
   id: string;
@@ -9,10 +11,16 @@ type Monument = {
   image?: string;
 };
 
+type RootStackParamList = {
+  MonumentDetail: { monument: Monument };
+};
+
 type Props = {
   monument: Monument;
   onClose: () => void;
   onGo: () => void;
+  suggested?: Monument[];
+  onSelectMonument?: (m: Monument) => void;
 };
 
 const images: Record<string, any> = {
@@ -25,7 +33,8 @@ const images: Record<string, any> = {
   
 };
 
-export default function BottomSheetMonument({ monument, onClose, onGo }: Props) {
+export default function BottomSheetMonument({ monument, onClose, onGo, suggested = [], onSelectMonument }: Props) {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const headerImage = monument.image ? images[monument.image] : images.img_1;
   return (
     <View style={styles.sheet}>
@@ -47,6 +56,19 @@ export default function BottomSheetMonument({ monument, onClose, onGo }: Props) 
             <Text style={styles.goText}>Vai</Text>
           </TouchableOpacity>
         </View>
+        {suggested.length > 0 ? (
+          <View style={styles.suggestSection}>
+            <Text style={styles.suggestTitle}>Potresti visitare anche:</Text>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.suggestRow}>
+              {suggested.map((s) => (
+                <TouchableOpacity key={s.id} style={styles.suggestCard} onPress={() => navigation.navigate('MonumentDetail', { monument: s })}>
+                  <Image source={images[s.image || 'img_1']} style={styles.suggestImage} />
+                  <Text numberOfLines={1} style={styles.suggestLabel}>{s.title}</Text>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </View>
+        ) : null}
       </View>
     </View>
   );
@@ -136,5 +158,38 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     fontWeight: '700',
+  },
+  suggestSection: {
+    marginTop: 16,
+  },
+  suggestTitle: {
+    fontSize: 14,
+    color: '#4B2E2B',
+    fontWeight: '700',
+    marginBottom: 8,
+  },
+  suggestRow: {
+    gap: 12,
+    paddingRight: 12,
+  },
+  suggestCard: {
+    width: 120,
+    borderRadius: 12,
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOpacity: 0.06,
+    shadowRadius: 6,
+    elevation: 2,
+    overflow: 'hidden',
+  },
+  suggestImage: {
+    width: '100%',
+    height: 74,
+  },
+  suggestLabel: {
+    fontSize: 12,
+    color: '#4B2E2B',
+    paddingHorizontal: 8,
+    paddingVertical: 6,
   },
 });

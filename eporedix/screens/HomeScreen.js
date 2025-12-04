@@ -5,6 +5,7 @@ import BottomSheetMonument from '../components/BottomSheetMonument';
 const monuments = require('../data/monuments.json');
 import { useNavigation } from '@react-navigation/native';
 import RouteProgressSheet from '../components/RouteProgressSheet';
+import * as Location from 'expo-location';
 
 export default function HomeScreen({ route }) {
   // Usa il personaggio passato, oppure uno di default
@@ -23,6 +24,8 @@ export default function HomeScreen({ route }) {
   const [showCard, setShowCard] = useState(true);
   const [routeLine, setRouteLine] = useState([]);
   const [routeCursor, setRouteCursor] = useState(0);
+  const locationSub = useRef(null);
+  const prevPosRef = useRef(null);
 
   useEffect(() => {
     if (center && mapRef.current) {
@@ -48,23 +51,25 @@ export default function HomeScreen({ route }) {
   };
 
   useEffect(() => {
-    let id;
-    if (routeActive && routeTarget) {
-      id = setInterval(() => {
-        setStepsDone((prev) => Math.min(prev + 30, (routeTarget.steps || 1000)));
-        setRouteCursor((c) => {
-          if (routeLine.length > 0 && c < routeLine.length - 1) {
-            const nextC = c + 1;
-            const pt = routeLine[nextC];
-            setUserPos({ lat: pt.latitude, lng: pt.longitude });
-            return nextC;
-          }
-          return c;
-        });
-      }, 1000);
-    }
-    return () => id && clearInterval(id);
-  }, [routeActive, routeTarget, routeLine]);
+    const startWatch = async () => {
+      const fg = await Location.requestForegroundPermissionsAsync();
+      if (fg.status !== 'granted') return;
+      if (locationSub.current) return;
+      locationSub.current = await Location.watchPositionAsync({ accuracy: Location.Accuracy.Balanced, distanceInterval: 5 }, (loc) => {
+        const lat = loc.coords.latitude;
+        const lng = loc.coords.longitude;
+        setUserPos({ lat, lng });
+        const prev = prevPosRef.current;
+        if (prev) {
+          const d = haversineKm(prev.lat, prev.lng, lat, lng) * 1000;
+          setStepsDone((s) => Math.min(s + Math.round(d / 0.8), routeTarget ? (routeTarget.steps || 1000) : s));
+        }
+        prevPosRef.current = { lat, lng };
+      });
+    };
+    if (routeActive) startWatch();
+    return () => {};
+  }, [routeActive]);
 
   const haversineKm = (lat1, lon1, lat2, lon2) => {
     const toRad = (v) => (v * Math.PI) / 180;
@@ -82,10 +87,27 @@ export default function HomeScreen({ route }) {
     setRouteTarget(target);
     setRouteActive(true);
     setStepsDone(0);
-    setUserPos({ lat: 45.4669, lng: 7.8765 });
+    let startLat = 45.4669;
+    let startLng = 7.8765;
+    try {
+      const fg = await Location.requestForegroundPermissionsAsync();
+      if (fg.status === 'granted') {
+        const pos = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Balanced });
+        startLat = pos.coords.latitude;
+        startLng = pos.coords.longitude;
+        setUserPos({ lat: startLat, lng: startLng });
+        prevPosRef.current = { lat: startLat, lng: startLng };
+      } else {
+        setUserPos({ lat: startLat, lng: startLng });
+        prevPosRef.current = { lat: startLat, lng: startLng };
+      }
+    } catch (e) {
+      setUserPos({ lat: startLat, lng: startLng });
+      prevPosRef.current = { lat: startLat, lng: startLng };
+    }
     setRouteCursor(0);
     try {
-      const url = `https://router.project-osrm.org/route/v1/foot/${7.8765},${45.4669};${target.lng},${target.lat}?overview=full&geometries=geojson&alternatives=true&annotations=duration,distance`;
+      const url = `https://router.project-osrm.org/route/v1/foot/${startLng},${startLat};${target.lng},${target.lat}?overview=full&geometries=geojson&alternatives=true&annotations=duration,distance`;
       const res = await fetch(url);
       const json = await res.json();
       const routes = Array.isArray(json?.routes) ? json.routes : [];
@@ -94,7 +116,6 @@ export default function HomeScreen({ route }) {
       if (Array.isArray(coords) && coords.length > 0) {
         const line = coords.map(([lon, lat]) => ({ latitude: lat, longitude: lon }));
         setRouteLine(line);
-        setUserPos({ lat: line[0].latitude, lng: line[0].longitude });
       } else {
         setRouteLine(makeRouteLine(45.4669, 7.8765, target.lat, target.lng, 30));
       }
@@ -190,6 +211,7 @@ export default function HomeScreen({ route }) {
             setRouteActive(false);
             setRouteTarget(null);
             setStepsDone(0);
+            if (locationSub.current) { locationSub.current.remove(); locationSub.current = null; }
           }}
         />
       ) : null}

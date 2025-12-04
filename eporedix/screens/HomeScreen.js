@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity, Alert } from 'react-native';
 import MapView, { Marker, Polyline, PROVIDER_DEFAULT } from 'react-native-maps';
 import BottomSheetMonument from '../components/BottomSheetMonument';
 const monuments = require('../data/monuments.json');
@@ -26,6 +26,7 @@ export default function HomeScreen({ route }) {
   const [routeCursor, setRouteCursor] = useState(0);
   const locationSub = useRef(null);
   const prevPosRef = useRef(null);
+  const outAlertShownRef = useRef(false);
 
   useEffect(() => {
     if (center && mapRef.current) {
@@ -65,6 +66,15 @@ export default function HomeScreen({ route }) {
           setStepsDone((s) => Math.min(s + Math.round(d / 0.8), routeTarget ? (routeTarget.steps || 1000) : s));
         }
         prevPosRef.current = { lat, lng };
+        const distKm = haversineKm(lat, lng, 45.4669, 7.8765);
+        if (routeActive && distKm > 10 && !outAlertShownRef.current) {
+          outAlertShownRef.current = true;
+          Alert.alert('Attenzione', 'impossibile seguire il percorso. Perchè non ti trovi nella città di Ivrea');
+          setRouteActive(false);
+          setRouteTarget(null);
+          setRouteLine([]);
+          if (locationSub.current) { locationSub.current.remove(); locationSub.current = null; }
+        }
       });
     };
     if (routeActive) startWatch();
@@ -85,7 +95,6 @@ export default function HomeScreen({ route }) {
     const target = selected || monuments[0];
     if (!target) return;
     setRouteTarget(target);
-    setRouteActive(true);
     setStepsDone(0);
     let startLat = 45.4669;
     let startLng = 7.8765;
@@ -105,6 +114,13 @@ export default function HomeScreen({ route }) {
       setUserPos({ lat: startLat, lng: startLng });
       prevPosRef.current = { lat: startLat, lng: startLng };
     }
+    const distKm = haversineKm(startLat, startLng, 45.4669, 7.8765);
+    if (distKm > 10) {
+      Alert.alert('Attenzione', 'impossibile seguire il percorso. Perchè non ti trovi nella città di Ivrea');
+      return;
+    }
+    outAlertShownRef.current = false;
+    setRouteActive(true);
     setRouteCursor(0);
     try {
       const url = `https://router.project-osrm.org/route/v1/foot/${startLng},${startLat};${target.lng},${target.lat}?overview=full&geometries=geojson&alternatives=true&annotations=duration,distance`;
@@ -212,6 +228,7 @@ export default function HomeScreen({ route }) {
             setRouteTarget(null);
             setStepsDone(0);
             if (locationSub.current) { locationSub.current.remove(); locationSub.current = null; }
+            outAlertShownRef.current = false;
           }}
         />
       ) : null}

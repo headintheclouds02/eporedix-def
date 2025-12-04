@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
-import MapView, { Marker, PROVIDER_DEFAULT } from 'react-native-maps';
+import MapView, { Marker, Polyline, PROVIDER_DEFAULT } from 'react-native-maps';
 import BottomSheetMonument from '../components/BottomSheetMonument';
 const monuments = require('../data/monuments.json');
+import { useNavigation } from '@react-navigation/native';
+import RouteProgressSheet from '../components/RouteProgressSheet';
 
 export default function HomeScreen({ route }) {
   // Usa il personaggio passato, oppure uno di default
@@ -13,6 +15,14 @@ export default function HomeScreen({ route }) {
   const mapRef = useRef(null);
   const [selected, setSelected] = useState(null);
   const center = route?.params?.center;
+  const navigation = useNavigation();
+  const [routeActive, setRouteActive] = useState(false);
+  const [routeTarget, setRouteTarget] = useState(null);
+  const [stepsDone, setStepsDone] = useState(0);
+  const [userPos, setUserPos] = useState({ lat: 45.4669, lng: 7.8765 });
+  const [showCard, setShowCard] = useState(true);
+  const [routeLine, setRouteLine] = useState([]);
+  const [routeCursor, setRouteCursor] = useState(0);
 
   useEffect(() => {
     if (center && mapRef.current) {
@@ -28,6 +38,82 @@ export default function HomeScreen({ route }) {
     }
   }, [center]);
 
+  const makeRouteLine = (slat, slng, elat, elng, segments = 20) => {
+    const pts = [];
+    for (let i = 0; i <= segments; i++) {
+      const t = i / segments;
+      pts.push({ latitude: slat + (elat - slat) * t, longitude: slng + (elng - slng) * t });
+    }
+    return pts;
+  };
+
+  useEffect(() => {
+    let id;
+    if (routeActive && routeTarget) {
+      id = setInterval(() => {
+        setStepsDone((prev) => Math.min(prev + 30, (routeTarget.steps || 1000)));
+        setRouteCursor((c) => {
+          if (routeLine.length > 0 && c < routeLine.length - 1) {
+            const nextC = c + 1;
+            const pt = routeLine[nextC];
+            setUserPos({ lat: pt.latitude, lng: pt.longitude });
+            return nextC;
+          }
+          return c;
+        });
+      }, 1000);
+    }
+    return () => id && clearInterval(id);
+  }, [routeActive, routeTarget, routeLine]);
+
+  const haversineKm = (lat1, lon1, lat2, lon2) => {
+    const toRad = (v) => (v * Math.PI) / 180;
+    const R = 6371;
+    const dLat = toRad(lat2 - lat1);
+    const dLon = toRad(lon2 - lon1);
+    const a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  };
+
+  const startRoute = async () => {
+    const target = selected || monuments[0];
+    if (!target) return;
+    setRouteTarget(target);
+    setRouteActive(true);
+    setStepsDone(0);
+    setUserPos({ lat: 45.4669, lng: 7.8765 });
+    setRouteCursor(0);
+    try {
+      const url = `https://router.project-osrm.org/route/v1/foot/${7.8765},${45.4669};${target.lng},${target.lat}?overview=full&geometries=geojson&alternatives=true&annotations=duration,distance`;
+      const res = await fetch(url);
+      const json = await res.json();
+      const routes = Array.isArray(json?.routes) ? json.routes : [];
+      const best = routes.length > 0 ? routes.reduce((min, r) => (r.duration < min.duration ? r : min), routes[0]) : null;
+      const coords = best?.geometry?.coordinates || [];
+      if (Array.isArray(coords) && coords.length > 0) {
+        const line = coords.map(([lon, lat]) => ({ latitude: lat, longitude: lon }));
+        setRouteLine(line);
+        setUserPos({ lat: line[0].latitude, lng: line[0].longitude });
+      } else {
+        setRouteLine(makeRouteLine(45.4669, 7.8765, target.lat, target.lng, 30));
+      }
+    } catch (e) {
+      setRouteLine(makeRouteLine(45.4669, 7.8765, target.lat, target.lng, 30));
+    }
+    if (mapRef.current) {
+      mapRef.current.animateToRegion(
+        {
+          latitude: target.lat,
+          longitude: target.lng,
+          latitudeDelta: 0.005,
+          longitudeDelta: 0.005,
+        },
+        600
+      );
+    }
+  };
+
   return (
     <View style={styles.container}>
       <MapView
@@ -41,6 +127,14 @@ export default function HomeScreen({ route }) {
         }}
         ref={mapRef}
       >
+        {routeLine.length > 0 ? (
+          <Polyline coordinates={routeLine} strokeColor="#C0746D" strokeWidth={4} />
+        ) : null}
+        {routeActive ? (
+          <Marker coordinate={{ latitude: userPos.lat, longitude: userPos.lng }}>
+            <Image source={character.image} style={{ width: 32, height: 32, borderRadius: 16 }} />
+          </Marker>
+        ) : null}
         {monuments.map((m) => (
           <Marker key={m.id} coordinate={{ latitude: m.lat, longitude: m.lng }} onPress={() => setSelected(m)}>
             <View style={styles.monumentMarker}>
@@ -56,20 +150,8 @@ export default function HomeScreen({ route }) {
           monument={selected}
           suggested={monuments.filter((m) => m.id !== selected.id).slice(0, 3)}
           onClose={() => setSelected(null)}
-          onGo={() => {
-            if (mapRef.current && selected) {
-              mapRef.current.animateToRegion(
-                {
-                  latitude: selected.lat,
-                  longitude: selected.lng,
-                  latitudeDelta: 0.005,
-                  longitudeDelta: 0.005,
-                },
-                600
-              );
-            }
-          }}
-          onSelectMonument={(m) => setSelected(m)}
+          onGo={() => { startRoute(); }}
+          onSelectMonument={(m) => { setSelected(null); navigation.navigate('MonumentDetail', { monument: m }); }}
         />
       ) : null}
 
@@ -80,7 +162,7 @@ export default function HomeScreen({ route }) {
       </View>
 
       {/* Card personaggio */}
-      <View style={styles.characterCard}>
+      {showCard ? (<View style={styles.characterCard}>
         <Image
           source={character.image}
           style={styles.avatar}
@@ -89,14 +171,28 @@ export default function HomeScreen({ route }) {
           <Text style={styles.cardTitle}>
             Segui il percorso di{'\n'}{character.name.split(' ')[0]}
           </Text>
-          <TouchableOpacity style={styles.startButton}>
+          <TouchableOpacity style={styles.startButton} onPress={startRoute}>
             <Text style={styles.startButtonText}>Inizia</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.closeButton}>
+        <TouchableOpacity style={styles.closeButton} onPress={() => setShowCard(false)}>
           <Text style={styles.closeButtonText}>×</Text>
         </TouchableOpacity>
-      </View>
+      </View>) : null}
+
+      {routeActive && routeTarget ? (
+        <RouteProgressSheet
+          avatar={character.image}
+          stepsDone={stepsDone}
+          stepsGoal={routeTarget.steps || 1000}
+          distanceKm={haversineKm(userPos.lat, userPos.lng, routeTarget.lat, routeTarget.lng)}
+          onExit={() => {
+            setRouteActive(false);
+            setRouteTarget(null);
+            setStepsDone(0);
+          }}
+        />
+      ) : null}
     </View>
   );
 }

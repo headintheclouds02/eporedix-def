@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import type { NavigationProp } from '@react-navigation/native';
+ 
 
 type Monument = {
   id: string;
@@ -9,10 +8,6 @@ type Monument = {
   description: string;
   steps: number;
   image?: string;
-};
-
-type RootStackParamList = {
-  MonumentDetail: { monument: Monument };
 };
 
 type Props = {
@@ -34,7 +29,6 @@ const images: Record<string, any> = {
 };
 
 export default function BottomSheetMonument({ monument, onClose, onGo, suggested = [], onSelectMonument }: Props) {
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const headerImage = monument.image ? images[monument.image] : images.img_1;
   return (
     <View style={styles.sheet}>
@@ -52,7 +46,7 @@ export default function BottomSheetMonument({ monument, onClose, onGo, suggested
             <Text style={styles.stepsIcon}>👣</Text>
             <Text style={styles.stepsText}>{monument.steps} passi</Text>
           </View>
-          <TouchableOpacity style={styles.goBtn} onPress={onGo}>
+          <TouchableOpacity style={styles.goBtn} onPress={() => { onGo(); onClose(); }}>
             <Text style={styles.goText}>Vai</Text>
           </TouchableOpacity>
         </View>
@@ -61,7 +55,11 @@ export default function BottomSheetMonument({ monument, onClose, onGo, suggested
             <Text style={styles.suggestTitle}>Potresti visitare anche:</Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.suggestRow}>
               {suggested.map((s) => (
-                <TouchableOpacity key={s.id} style={styles.suggestCard} onPress={() => navigation.navigate('MonumentDetail', { monument: s })}>
+                <TouchableOpacity
+                  key={s.id}
+                  style={styles.suggestCard}
+                  onPress={() => onSelectMonument && onSelectMonument(s)}
+                >
                   <Image source={images[s.image || 'img_1']} style={styles.suggestImage} />
                   <Text numberOfLines={1} style={styles.suggestLabel}>{s.title}</Text>
                 </TouchableOpacity>
